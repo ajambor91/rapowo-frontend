@@ -1,0 +1,44 @@
+<div [ngClass]="'container mt__100'">
+<div [ngClass]="'row'">
+  <div [ngClass]="'col-md-6'">
+
+
+  </div>
+  <div [ngClass]="'col-md-6'">
+    <div [ngClass]="'form'">
+      <div [ngClass]="'form-group'">
+
+        <input [ngClass]="'form-control'" [(ngModel)]="nick" type="text" [placeholder]="'Nick'">
+      </div>
+      <div [ngClass]="'form-group'">
+
+        <input [ngClass]="'form-control'" [(ngModel)]="email" type="text" [placeholder]="'Email'">
+      </div>
+
+      <div [ngClass]="'form-group'">
+        <input [ngClass]="'form-control'" [(ngModel)]="plainPassword" type="password" [placeholder]="'Hasło'">
+      </div>
+
+      <div [ngClass]="'form-group'">
+        <input [ngClass]="'form-control'" [(ngModel)]="name" type="text" [placeholder]="'Imię'">
+      </div>
+
+      <div [ngClass]="'form-group'">
+        <input [ngClass]="'form-control'" type="text" [(ngModel)]="age" [placeholder]="'Wiek'">
+      </div>
+
+      <div [ngClass]="'form-group'">
+        <input [ngClass]="'form-control'" type="text" [(ngModel)]="city" [placeholder]="'Miasto'">
+      </div>
+
+      <div [ngClass]="'form-group'">
+        <input [ngClass]="'form-control'" type="text" [(ngModel)]="sex" [placeholder]="'Płeć'">
+      </div>
+      <div [ngClass]="'form-group'">
+        <button class="d-inline btn" (click)="registerUser()">Zaloguj się!</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>

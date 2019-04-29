@@ -1,0 +1,17 @@
+<div [ngClass]="'container mt-100'">
+  <div [ngClass]="'row'">
+    <div [ngClass]="'col-12'">
+      <div [ngClass]="'form'">
+        <div [ngClass]="'form-group'">
+          <input [ngClass]="'form-control'" [placeholder]="'Tytuł'" [type]="'text'" [(ngModel)]="title">
+        </div>
+        <div [ngClass]="'form-group'">
+          <textarea [ngClass]="'form-control'" [placeholder]="'Tekst'" rows="8" [(ngModel)]="content"></textarea>
+        </div>
+        <div [ngClass]="'form-group'">
+          <button [ngClass]="'btn'" (click)="addText()">Dodaj!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

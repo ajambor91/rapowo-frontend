@@ -1,0 +1,18 @@
+.raper_left, .raper_right, .banner{
+    height: 127px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #021416;
+}
+.raper_left{
+
+    background-image: url('../../assets/header/raper_left.png');
+}
+.banner{
+    background-position: center;
+    background-image: url('../../assets/header/napis.png');
+}
+.raper_right{
+
+    background-image: url('../../assets/header/raper_right.png');
+}
