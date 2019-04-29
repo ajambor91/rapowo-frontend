@@ -9,6 +9,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import {FormsModule} from '@angular/forms';
 import { AddTextComponent } from './add-text/add-text.component';
 import {MainComponent} from './main/main.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {MainComponent} from './main/main.component';
     NavbarComponent,
     RegistrationFormComponent,
     AddTextComponent,
-    MainComponent
+    MainComponent,
+    LoginComponent
 
   ],
   imports: [
