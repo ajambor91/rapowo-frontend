@@ -1,3 +1,7 @@
+@font-face {
+  font-family: hvd;
+  src: url(assets/fonts/hvd-peace/HVD_Peace.ttf) ;
+}
 body
 {
     background-color: #011214 !important;
@@ -28,4 +32,6 @@ body
   color: #FFF !important;
   font-weight: bold !important;
 }
-
+h1,h2,h3,h4,h5,h6,h7{
+  font-family: hvd;
+}

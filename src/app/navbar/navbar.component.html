@@ -1,22 +1,20 @@
 <div class="container nav-bg">
     <nav class="navbar navbar-expand-lg d-block">
-        <ul class="navbar-nav">
+      <div class="navbar-collapse collapse">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <button class="navlink btn">Teksty</button>
+                <button class="navlink btn menu">Teksty</button>
             </li>
             <li class="nav-item">
-                <button class="navlink btn" routerLink="/add-text">Dodaj tekst</button>
+                <button class="navlink btn menu" routerLink="/add-text">Dodaj tekst</button>
 
             </li>
-            <li class="nav-item d-block">
 
-                <div class="form-inline">
-                    <input type="email" [(ngModel)]="email" class="form-control login d-inline" placeholder="Login">
-                    <input type="password" [(ngModel)]="plainPassword" class="form-control login d-inline" placeholder="Hasło">
-                    <button class="d-inline btn" (click)="loginUser()">Zaloguj się!</button>
-                </div>
-                <a role="button" routerLink="/registry" class="btn pull-right">Nie masz konta? Zarejestruj się!</a>
-            </li>
+
+
+
         </ul>
+        <a role="button" routerLink="/registry" class="btn menu">Zaloguj się!</a>
+      </div>
     </nav>
 </div>
