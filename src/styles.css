@@ -1,12 +1,31 @@
 body
 {
-    background-color: #021416 !important;
+    background-color: #011214 !important;
     color: #FFF !important;
 }
 .mt__100{
   margin-top: 100px;
 }
+.mb__50{
+  margin-bottom: 50px;
+}
 .author__content{
   background-image: linear-gradient(#810319,#c7141a);
-  background-color: ;
+
 }
+.avatar{
+  height: 200px;
+  width: 200px;
+}
+.required__fields{
+  font-size: 1.4em;
+  color: #810319;
+  margin: 5px 0 2px 10px;
+}
+.rapowo__btn{
+  background-color: #810319 !important;
+  padding: 10px 40px 10px 40px !important;
+  color: #FFF !important;
+  font-weight: bold !important;
+}
+

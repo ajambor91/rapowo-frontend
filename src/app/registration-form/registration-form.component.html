@@ -1,44 +1,69 @@
-<div [ngClass]="'container mt__100'">
-<div [ngClass]="'row'">
-  <div [ngClass]="'col-md-6'">
+<div class="container mt__100">
+<h2 class="h1 text-center mb-5">Rejestracja</h2>
+  <div class="row">
+  <div class="col-md-6">
+    <h3 class="h2 mb-5 text-center">Avatar</h3>
+    <div class="image m-auto text-center">
+      <img id="avatar" (drop)="handleDropImage($event)"  class="rounded-circle avatar" src="https://via.placeholder.com/200C">
 
+    </div>
+    <div class="form-group mt-5 text-center">
+      <input class="form-control-file file-input border border-white" type="file" name="image" (change)="getInputFile($event)">
+      <p class="alert" role="alert">Przeciągnij avatar na obrazek, badź wybierz klikając tutaj</p>
+    </div>
 
   </div>
-  <div [ngClass]="'col-md-6'">
-    <div [ngClass]="'form'">
-      <div [ngClass]="'form-group'">
+  <div class="col-md-6">
+    <div class="form">
+      <div class="form-group position-relative">
 
-        <input [ngClass]="'form-control'" [(ngModel)]="nick" type="text" [placeholder]="'Nick'">
+        <input class="form-control d-inline" (change)="checkNick()" [(ngModel)]="nick" type="text" placeholder="Nick"><span class="position-absolute required__fields">*</span>
+        <span *ngIf="!validation.nick" class="alert">Nick się powtarza</span>
       </div>
-      <div [ngClass]="'form-group'">
+      <div class="form-group position-relative">
 
-        <input [ngClass]="'form-control'" [(ngModel)]="email" type="text" [placeholder]="'Email'">
-      </div>
-
-      <div [ngClass]="'form-group'">
-        <input [ngClass]="'form-control'" [(ngModel)]="plainPassword" type="password" [placeholder]="'Hasło'">
+        <input class="form-control d-inline" (change)="checkEmail()" [(ngModel)]="email" type="text" placeholder="Email"><span class="position-absolute required__fields">*</span>
+        <span *ngIf="!validation.email" class="alert">Email się powtarza</span>
       </div>
 
-      <div [ngClass]="'form-group'">
-        <input [ngClass]="'form-control'" [(ngModel)]="name" type="text" [placeholder]="'Imię'">
+      <div class="form-group position-relative">
+        <input class="form-control d-inline" [(ngModel)]="plainPassword" (change)="checkPassword()" type="password" placeholder="Hasło"><span class="position-absolute required__fields">*</span>
+        <span *ngIf="!validation.password" class="alert">Hasło musi zawierać conajmniej 6 znaków, tylko małe, wielkie litery oraz cyfry</span>
+      </div>
+      <div class="form-group position-relative">
+        <input class="form-control d-inline" [(ngModel)]="repeatPassword" (change)="checkRepeatPassword()" type="password" placeholder="Powtórz hasło"><span class="position-absolute required__fields">*</span>
+        <span *ngIf="!validation.repeatPassword" class="alert pt-5">Hasła się różnią</span>
+      </div>
+      <div class="form-group">
+        <input class="form-control" [(ngModel)]="name" type="text" placeholder="Imię">
       </div>
 
-      <div [ngClass]="'form-group'">
-        <input [ngClass]="'form-control'" type="text" [(ngModel)]="age" [placeholder]="'Wiek'">
+      <div class="form-group">
+        <input class="form-control" type="text" [(ngModel)]="age" placeholder="Wiek">
       </div>
 
-      <div [ngClass]="'form-group'">
-        <input [ngClass]="'form-control'" type="text" [(ngModel)]="city" [placeholder]="'Miasto'">
+      <div class="form-group">
+        <input class="form-control" type="text" [(ngModel)]="city" placeholder="Miasto">
       </div>
 
-      <div [ngClass]="'form-group'">
-        <input [ngClass]="'form-control'" type="text" [(ngModel)]="sex" [placeholder]="'Płeć'">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="men-option" name="sex" value="0" [(ngModel)]="sex">
+        <label class="form-check-label" for="men-option">Facet</label>
       </div>
-      <div [ngClass]="'form-group'">
-        <button class="d-inline btn" (click)="registerUser()">Zaloguj się!</button>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" id="female-option" type="radio" name="sex"value="1" [(ngModel)]="sex">
+        <label class="form-check-label" for="female-option">Babeczka</label>
       </div>
+
     </div>
   </div>
 
 </div>
+  <div class="row">
+    <div class="col-12">
+    <div class="form-group text-center mt-5">
+      <button id="submit" disabled="disabled" role="button" class="d-inline btn rapowo__btn" (click)="registerUser()">Zarejestruj się!</button>
+    </div>
+    </div>
+  </div>
 </div>
