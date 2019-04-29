@@ -13,13 +13,10 @@ body
 .mb__50{
   margin-bottom: 50px;
 }
-.author__content{
-  background-image: linear-gradient(#810319,#c7141a);
 
-}
 .avatar{
-  height: 300px;
-  width: 300px;
+  height: 200px;
+  width: 200px;
 }
 .required__fields{
   font-size: 1.4em;

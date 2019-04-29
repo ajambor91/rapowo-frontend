@@ -1,22 +1,22 @@
-<div [ngClass]="'container mt__100'">
-  <h2 [ngClass]="'h1 text-center mb-5'">Teksty</h2>
-  <div [ngClass]="'row mb-5'" *ngFor="let text of texts">
-    <div [ngClass]="'offset-lg-1 col-lg-3 col-xs-12 p-3 author__content border'">
-      <div [ngClass]="'m-auto text-center'">
-        <img [ngClass]="'rounded-circle avatar'" [src]="'https://via.placeholder.com/200C'">
+<div class="container mt__100">
+  <h2 class="h1 text-center mb-5">Teksty</h2>
+  <div class="row mb-5" *ngFor="let text of texts">
+    <div class="offset-lg-1 col-lg-3 col-xs-12 p-3 author__content border">
+      <div class="m-auto text-center">
+        <img class="rounded-circle avatar" src="https://via.placeholder.com/200C">
       </div>
-        <p [ngClass]="'author author__nick'">{{text.author.nick}}</p>
-        <p [ngClass]="'author author__sex'">{{text.author.sex}}</p>
-        <p [ngClass]="'author author__ratings'">{{text.author.rating}}</p>
+        <p class="author author__nick">{{text.author.nick}}</p>
+        <p class="author author__sex">{{text.author.sex}}</p>
+        <p class="author author__ratings">{{text.author.rating}}</p>
 
 
     </div>
-    <div [ngClass]="'col-lg-7 col-xs-12 p-3 border'">
-      <h3 [ngClass]="'h2 text-center'">{{text.title}}</h3>
+    <div class="col-lg-7 col-xs-12 p-3 border">
+      <h3 class="h2 text-center">{{text.title}}</h3>
 
-      <p [ngClass]="'text__song'">{{text.content}}</p>
-      <div [ngClass]="'row'">
-        <div [ngClass]="'col-12'">
+      <p class="text__song">{{text.content}}</p>
+      <div class="row">
+        <div class="col-12">
 
         </div>
       </div>
