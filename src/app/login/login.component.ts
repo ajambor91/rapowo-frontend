@@ -8,7 +8,7 @@ import {API_CONFIG} from '../config/config.module';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
 
 
 

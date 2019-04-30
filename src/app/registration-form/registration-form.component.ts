@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {API_CONFIG} from '../config/config.module';
+import {UserService} from "../services/user.service";
+
+
 
 @Component({
   selector: 'app-registration-form',
@@ -9,24 +12,22 @@ import {API_CONFIG} from '../config/config.module';
 })
 export class RegistrationFormComponent {
 
-  constructor(private http: HttpClient) {
+
+  constructor(private http: HttpClient, private api: UserService) {
   }
 
-  nick: string = null;
-  email: string = null;
-  plainPassword: string = null;
-  repeatPassword:string = null;
-  name: string = null;
-  age: number = null;
-  city: string = null;
-  sex: number = null;
-  image: any = null;
-  validation:Object = {
-    email: true,
-    nick: true,
-    password: true,
-    repeatPassword: true
-  };
+  user:Object ={
+    nick: null,
+    email: null,
+    plainPassword: null,
+    repeatPassword:null,
+    name: null,
+    age: null,
+    city: null,
+    sex: null,
+    image: null
+  }
+
   ngOnInit() {
     window.addEventListener('dragover', (e) => {
       e.preventDefault();
@@ -35,91 +36,11 @@ export class RegistrationFormComponent {
       e.preventDefault();
     }, false);
   }
-  checkEmail(){
-    this.http.post(`${API_CONFIG.api}/security/check-email`, {
-      'email':this.email
-    }).subscribe( resp =>{
-      if(resp.status != true){
-        this.validation.email= false;
-
-      }else{
-        this.validation.email= true;
-
-      }
-      this.checkFields();
-    });
+  registerUser(){
+    this.api.registerUser(this.user);
   }
   checkNick(){
-    this.http.post(`${API_CONFIG.api}/security/check-nick`, {
-      'nick':this.nick
-    }).subscribe( resp =>{
-      if(resp.status != true){
-        this.validation.nick = false;
-
-      }else{
-        this.validation.nick = true;
-
-      }
-      this.checkFields();
-    });
-  }
-  checkPassword(){
-    let pattern = /[A-Za-z0-9]{5,24}/g;
-    let checkPassword = pattern.test(this.plainPassword);
-
-    if(checkPassword != false){
-      this.validation.password = true;
-    }
-    else{
-      this.validation.password = false;
-    }
-    this.checkFields();
-  }
-  checkRepeatPassword(){
-    if(this.plainPassword === this.repeatPassword){
-      this.validation.repeatPassword = true;
-    }else{
-      this.validation.repeatPassword = false;
-    }
-    this.checkFields();
-  }
-  registerUser() {
-
-    this.http.post(`${API_CONFIG.api}/security/register`, {
-      "plainPassword": this.plainPassword,
-      "email": this.email,
-      "nick":this.nick,
-      "name":this.name,
-      "age":this.age,
-      "city":this.city,
-      "sex":this.sex,
-      "image":this.image
-
-    }).subscribe(resp => {
-    });
-  }
-  checkFields(){
-
-    let check;
-    let submit = document.getElementById('submit');
-    for(let i in this.validation){
-      if(this.validation[i] == true){
-        check = true;
-      }
-      else{
-        check = false;
-        break;
-      }
-    }
-    if((this.email == '' || this.email == null) || (this.nick == '' || this.nick == null) || (this.plainPassword == '' || this.plainPassword == null)   ){
-      check = false;
-    }
-    if(check == false){
-      submit.disabled = true;
-    }
-    else{
-      submit.disabled = false;
-    }
+    this.api.checkNick(this.user.nick);
   }
   handleDropImage(event) {
     event.preventDefault();
