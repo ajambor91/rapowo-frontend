@@ -4,7 +4,7 @@
   <div class="col-md-6">
 
     <div class="image m-auto text-center">
-      <img id="avatar" (drop)="handleDropImage($event)"  class="rounded-circle avatar" src="https://via.placeholder.com/200C">
+      <img id="avatar" (drop)="handleDropImage($event)"  class="rounded-circle avatar" [src]="imagePath" >
 
     </div>
     <div class="form-group mt-5 text-center">
@@ -23,7 +23,7 @@
       <div class="form-group position-relative">
 
         <input class="form-control d-inline" (change)="checkEmail()" [(ngModel)]="user.email" type="text" placeholder="Email"><span class="position-absolute required__fields">*</span>
-
+        <dfn class="alert alert-danger" *ngIf="'email' in errors">{{errors.email}}</dfn>
       </div>
 
       <div class="form-group position-relative">
@@ -62,7 +62,7 @@
   <div class="row">
     <div class="col-12">
     <div class="form-group text-center mt-5">
-      <button id="submit" [disabled]="checkFields()" role="button" class="d-inline btn rapowo__btn" (click)="checkFields() && registerUser()">Zarejestruj się!</button>
+      <button id="submit"  role="button" class="d-inline btn rapowo__btn" (click)="registerUser()">Zarejestruj się!</button>
     </div>
     </div>
   </div>
