@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import {UserParams, UserService} from "../services/user.service";
+import {Errors, UserParams, UserService} from '../services/user.service';
 
 import { DomSanitizer} from "@angular/platform-browser";
 
@@ -13,12 +13,12 @@ import { DomSanitizer} from "@angular/platform-browser";
 
 export class RegistrationFormComponent{
 
-
+  test:boolean = false;
   user:UserParams = new UserParams();
+  errors:Errors = new Errors();
   constructor(private http: HttpClient, private api: UserService) {
   }
 
-  errors : {email:'adres juz istnieje'};
   imagePath:String = null;
 
   ngOnInit() {
@@ -32,17 +32,57 @@ export class RegistrationFormComponent{
   registerUser(){
     console.log(this.user);
     this.api.registerUser(this.user).subscribe(reg => {
-      if(!reg.status) this.errors = reg.error;
+
     });
   }
   checkEmail(){
-    this.api.checkEmail(this.user.email);
+    if(this.user.email != '') {
+      this.api.checkEmail(this.user.email).subscribe(email => {
+        if (!email.status) this.errors.email = email.error;
+        else this.errors.email = null;
+      });
+    }else{
+      this.errors.email = 'Pole jest obowiązkowe!';
+    }
   }
-  checkNick(){
-    this.api.checkNick(this.user.nick);
+  checkNick() {
+    if (this.user.nick != '') {
+      this.api.checkNick(this.user.nick).subscribe(nick => {
+        if (!nick.status) this.errors.nick = nick.error;
+        else this.errors.nick = null;
+      });
+    } else {
+      this.errors.nick = 'Pole jest obowiązkowe!';
+    }
   }
   checkPassword(){
-    this.api.checkPassword(this.user.plainPassword);
+    if(this.user.plainPassword != '') {
+      let pattern = /[a-zA-Z]{1,}[0-9]{1,}/;
+      if (!pattern.test(this.user.plainPassword)) this.errors.plainPassword = 'Hasło powinno mieć 6 znaków w tym litery i cyfry';
+      else this.errors.plainPassword = null;
+    }
+    else{
+      this.errors.plainPassword = 'Pole jest obowiązkowe!';
+    }
+  }
+  checkRepeatPassword(){
+    if(this.user.repeatPassword != '') {
+      if (this.user.plainPassword != this.user.repeatPassword) this.errors.repeatPassword = 'Hasła się różnią';
+      else this.errors.repeatPassword = null;
+    }
+    else {
+      this.errors.repeatPassword = 'Pole jest obowiązkowe!';
+    }
+  }
+  checkFields(){
+    let check = true;
+    for(let i in this.errors){
+      if(this.errors[i] != null){
+        check = true;
+        break;
+      }else check = false;
+    }
+    return check;
   }
   handleDropImage(event) {
 
@@ -62,8 +102,10 @@ export class RegistrationFormComponent{
      let fReader = new FileReader();
      fReader.onload = () =>{
        this.imagePath = fReader.result.toString();
+       this.user.image = this.imagePath;
      }
     fReader.readAsDataURL(file);
+
   }
 
 }

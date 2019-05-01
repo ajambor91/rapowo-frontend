@@ -8,7 +8,7 @@
 
     </div>
     <div class="form-group mt-5 text-center">
-      <input class="form-control-file file-input border border-white" type="file" name="image" (change)="getInputFile($event)">
+      <input class="form-control-file file-input border border-white" type="file" name="image"  (change)="getInputFile($event)">
       <p class="alert" role="alert">Przeciągnij avatar na obrazek, badź wybierz klikając tutaj</p>
     </div>
 
@@ -18,21 +18,21 @@
       <div class="form-group position-relative">
 
         <input class="form-control d-inline" (change)="checkNick()" [(ngModel)]="user.nick" type="text" placeholder="Nick"><span class="position-absolute required__fields">*</span>
-
+        <span class="alert" *ngIf="errors.nick != null">{{ errors.nick}}</span>
       </div>
       <div class="form-group position-relative">
 
         <input class="form-control d-inline" (change)="checkEmail()" [(ngModel)]="user.email" type="text" placeholder="Email"><span class="position-absolute required__fields">*</span>
-        <dfn class="alert alert-danger" *ngIf="'email' in errors">{{errors.email}}</dfn>
+        <div class="alert alert-danger" *ngIf="errors.email != null">{{errors.email}}</div>
       </div>
 
       <div class="form-group position-relative">
         <input class="form-control d-inline" [(ngModel)]="user.plainPassword" (change)="checkPassword()" type="password" placeholder="Hasło"><span class="position-absolute required__fields">*</span>
-
+        <span class="alert" *ngIf="errors.plainPassword != null">{{ errors.plainPassword }}</span>
       </div>
       <div class="form-group position-relative">
-        <input class="form-control d-inline" [(ngModel)]="repeatPassword" (change)="checkRepeatPassword()" type="password" placeholder="Powtórz hasło"><span class="position-absolute required__fields">*</span>
-
+        <input class="form-control d-inline" [(ngModel)]="user.repeatPassword" (change)="checkRepeatPassword()" type="password" placeholder="Powtórz hasło"><span class="position-absolute required__fields">*</span>
+        <span class="alert" *ngIf="errors.repeatPassword != null">{{ errors.repeatPassword }}</span>
       </div>
       <div class="form-group">
         <input class="form-control" [(ngModel)]="user.name" type="text" placeholder="Imię">
@@ -62,7 +62,7 @@
   <div class="row">
     <div class="col-12">
     <div class="form-group text-center mt-5">
-      <button id="submit"  role="button" class="d-inline btn rapowo__btn" (click)="registerUser()">Zarejestruj się!</button>
+      <button id="submit" [disabled]="checkFields()" role="button" class="d-inline btn rapowo__btn" (click)="registerUser()">Zarejestruj się!</button>
     </div>
     </div>
   </div>
