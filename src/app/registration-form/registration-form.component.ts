@@ -13,13 +13,12 @@ import { DomSanitizer} from "@angular/platform-browser";
 
 export class RegistrationFormComponent{
 
-  test:boolean = false;
   user:UserParams = new UserParams();
   errors:Errors = new Errors();
   constructor(private http: HttpClient, private api: UserService) {
   }
 
-  imagePath:String = null;
+  imagePath:string = null;
 
   ngOnInit() {
     window.addEventListener('dragover', (e) => {

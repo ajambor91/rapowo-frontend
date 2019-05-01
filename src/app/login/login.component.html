@@ -4,13 +4,13 @@
     <div class="col-12">
       <div class="form">
         <div class="form-group">
-          <input [(ngModel)]="email" class="form-control w-25 mx-auto" type="text" placeholder="Email">
+          <input [(ngModel)]="loginParams.email" class="form-control w-25 mx-auto" type="text" placeholder="Email">
         </div>
         <div class="form-group">
-          <input class="form-control w-25 mx-auto" [(ngModel)]="plainPassword" type="password" placeholder="Hasło">
+          <input class="form-control w-25 mx-auto" [(ngModel)]="loginParams.plainPassword" type="password" placeholder="Hasło">
         </div>
         <div class="form-group text-center">
-          <button role="button" class="btn rapowo__btn">Zaloguj się!</button>
+          <button role="button" (click)="login()" class="btn rapowo__btn">Zaloguj się!</button>
           <p>Nie masz konta? <a routerLink="/registry" role="button" class="btn">Zarejestruj się!</a></p>
         </div>
       </div>

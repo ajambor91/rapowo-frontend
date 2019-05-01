@@ -1,30 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {User} from '../model/user/user.model';
-import {API_CONFIG} from '../config/config.module';
+import {Component} from '@angular/core';
+import {Router} from "@angular/router";
+import {UserService, UserParams, LoginParams} from '../services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [UserService]
 })
-export class LoginComponent{
+export class LoginComponent {
+
+  constructor(
+    private api: UserService,
+    private router: Router
+  ) {
+  }
+
+  loginParams: LoginParams = new LoginParams();
 
 
+  login(){
 
-  constructor(private http:HttpClient) { }
+    this.api.login(this.loginParams).subscribe(log => {
+      if (log.status) {
+        localStorage.setItem('token', log.token.toString());
+        console.log(log);
+        console.log(localStorage.getItem('token'));
 
-  email:string = null;
-  plainPassword:string = null;
+      }
 
-
-  loginUser(){
-    this.http.post<User>(`${API_CONFIG.api}/security/login`,{'plainPassword':this.plainPassword, 'email':this.email}).subscribe(resp=>{
-      console.log(resp);
     });
   }
-  test(){
-    alert('dsd');
-  }
+
+
+
 
 }
