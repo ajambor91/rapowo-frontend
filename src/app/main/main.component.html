@@ -11,13 +11,13 @@
 
 
     </div>
-    <div class="col-lg-7 col-xs-12 p-3 border">
+    <div class="col-lg-7 col-xs-12 p-3 border position-relative">
       <h3 class="h2 text-center">{{text.title}}</h3>
 
       <p class="text__song">{{text.content}}</p>
-      <div class="row">
-        <div class="col-12">
-
+      <div class="row position-absolute fixed-bottom">
+        <div class="col-12 text-center">
+          <button class="btn rapowo__btn" (click)="getOneText(text.id)">Czytaj więcej!</button>
         </div>
       </div>
     </div>
