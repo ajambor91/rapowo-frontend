@@ -1,11 +1,11 @@
-export class User {
-  id:string = null;
-  nick:string = null;
-  email:string = null;
-  plainPassword:string= null;
-  name:string = null;
-  age:number = null;
-  city:string = null;
-  sex:number = null;
-  image:string = null;
+export interface User {
+  id: string;
+  nick: string;
+  email: string;
+  token: string;
+  name?: string;
+  age?: number;
+  city?: string;
+  sex?: number;
+  image?: string;
 }

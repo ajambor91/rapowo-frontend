@@ -1,0 +1,26 @@
+.nav-bg{
+
+
+    background-image: url('../../../assets/navbar/navbar.jpg');
+}
+.menu{
+  font-size: 1.3em;
+  color: #FFF;
+  font-family: hvd;
+}
+.dropdown-menu__red{
+  background-color: #950318;
+  border-radius: 0 0 10px 10px;
+}
+button:focus{
+  box-shadow: none;
+}
+button:after{
+  transform: rotate(0deg);
+  transition: transform .5s;
+}
+button[aria-expanded='true']:after{
+  transform: rotate(180deg);
+  transition: transform .5s;
+}
+

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {API_CONFIG} from '../config/config.module';
+import {API_CONFIG} from '../../config/config.module';
 
 @Component({
   selector: 'app-add-text',

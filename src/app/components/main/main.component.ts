@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import  { TextService} from '../services/text.service';
-import {UserService} from '../services/user.service';
+import  { TextService} from '../../services/text.service';
+import {UserService} from '../../services/user.service';
 
 
 @Component({

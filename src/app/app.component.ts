@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {TranslateService} from '@ngx-translate/core';
+import {User} from './model/user/user.model';
+import {AuthService} from './services/auth-service';
 
 
 @Component({
@@ -9,10 +11,16 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AppComponent {
   title = 'rapowo';
-  constructor() {}
+  user: User;
 
-
-
-
-
+  constructor(private translate: TranslateService, private authService: AuthService) {
+    translate.setDefaultLang('eng');
+    this.user = authService.currentUserValue;
+  }
 }
+
+
+
+
+
+

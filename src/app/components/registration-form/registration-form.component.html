@@ -1,0 +1,84 @@
+<div class="container mt__100">
+  <h2 class="h1 text-center mb-5">Rejestracja</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="image m-auto text-center">
+          <img id="avatar" (drop)="handleDropImage($event)" class="rounded-circle avatar" [src]="imagePath">
+
+        </div>
+        <div class="form-group mt-5 text-center">
+          <input class="form-control-file file-input border border-white" type="file" name="image"
+                 (change)="getInputFile($event)">
+          <p class="alert" role="alert">Przeciągnij avatar na obrazek, badź wybierz klikając tutaj</p>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <div class="form">
+          <div class="form-group position-relative">
+
+            <input id="nick" class="form-control d-inline" formControlName="nick" type="text" placeholder="Nick"><span
+            class="position-absolute required__fields">*</span>
+            <div>
+              <span *ngIf="form.nick.errors && form.nick.errors.required && (form.nick.touched || submit)">Nick jest wymagany</span>
+              <span *ngIf="form.nick.errors && form.nick.errors.pattern && form.nick.touched">Nick może zawierać tylko litery i cyfry</span>
+              <span *ngIf="form.nick.errors && form.nick.errors.nickExists && form.nick.touched">Nick jest już zajęty</span>
+            </div>
+          </div>
+          <div class="form-group position-relative">
+
+            <input class="form-control d-inline" formControlName="email" type="text" placeholder="Email"><span
+            class="position-absolute required__fields">*</span>
+            <span *ngIf="form.email.errors && form.email.errors.required && (form.email.touched || submit)">Email jest wymagany</span>
+            <span *ngIf="form.email.errors && form.email.errors.email && form.email.touched">Wpisano niepoprawny adres email</span>
+            <span *ngIf="form.email.errors && form.email.errors.emailExists && form.email.touched">Adres email jest już zajęty</span>
+          </div>
+          <div formGroupName="passwords">
+            <div class="form-group position-relative">
+              <input class="form-control d-inline" formControlName="password" type="password" placeholder="Hasło"><span
+              class="position-absolute required__fields">*</span>
+              <span *ngIf="passwords.get('password').errors && passwords.get('password').errors.required && (passwords.get('password').touched || submit)">Hasło jest wymagane</span>
+              <span *ngIf="passwords.get('password').errors && passwords.get('password').errors.pattern && passwords.get('password').touched">Hasło powinno zawierać 6 znaków i conajmniej jedną cyfrę</span>
+            </div>
+            <div class="form-group position-relative">
+              <input class="form-control d-inline" formControlName="repeatPassword" type="password"
+                     placeholder="Powtórz hasło"><span class="position-absolute required__fields">*</span>
+              <span *ngIf="passwords.get('repeatPassword').errors && passwords.get('repeatPassword').errors.required && (passwords.get('repeatPassword').touched || submit)">Musisz powtórzyć hasło</span>
+              <span *ngIf="passwords.get('repeatPassword').errors && passwords.get('repeatPassword').errors.matchPasswords && passwords.get('repeatPassword').touched">Hasła się nie zgadzają</span>
+            </div>
+
+          </div>
+          <div class="form-group position-relative">
+            <input placeholder="Imię" type="text" class="form-control d-inline" formControlName="name">
+          </div>
+          <div class="form-group position-relative">
+            <input placeholder="Miasto" type="text" formControlName="city" class="form-control d-inline">
+          </div>
+          <div class="form-group position-relative">
+            <input placeholder="Data urodzenia" [minDate]="datepicker.minDate" [maxDate]="datepicker.maxDate" (click)="d.toggle()" type="text" formControlName="birthdate" ngbDatepicker #d="ngbDatepicker"  class="position-relative form-control">
+          </div>
+          <div class="form-group position-relative">
+            <div class="form-check form-check-inline">
+              <input id="sex-female" formControlName="sex" value="true" class="form-check-input" type="radio">
+              <label for="sex-female" class="form-check-label">Laseczka</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input id="sex-male" value="false" formControlName="sex" class="form-check-input" type="radio">
+              <label for="sex-male" class="form-check-label">Facet</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group text-center mt-5">
+          <button [disabled]="registerForm.errors" id="submit" role="button" class="d-inline btn rapowo__btn">Zarejestruj się!</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

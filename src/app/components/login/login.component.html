@@ -1,0 +1,21 @@
+<div class="container mt__100">
+  <h2 class="h1 text-center mb-5">Logowanie</h2>
+  <form (ngSubmit)="login()" [formGroup]="loginForm">
+    <div class="row">
+      <div class="col-xs-12 col-md-6 offset-md-3">
+        <div class="form">
+          <div class="form-group">
+            <input class="form-control d-inline" formControlName="email" type="text" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input class="form-control d-inline" formControlName="password" type="password" placeholder="Hasło">
+          </div>
+          <div class="form-group text-center">
+            <button role="button" class="btn rapowo__btn">Zaloguj się!</button>
+            <p>Nie masz konta? <a routerLink="/registry" role="button" class="btn">Zarejestruj się!</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,26 @@
+<div class="container nav-bg">
+  <nav class="navbar navbar-expand-lg d-block">
+    <div class="navbar-collapse collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a routerLink="/" class="navlink btn menu">Teksty</a>
+        </li>
+        <li class="nav-item" *ngIf="user">
+          <a class="navlink btn menu" routerLink="/add-text">Dodaj tekst</a>
+
+        </li>
+
+
+      </ul>
+      <a *ngIf="!user"  role="button" routerLink="/login" class="btn menu">Zaloguj się!</a>
+      <div *ngIf="user" ngbDropdown #dropdownMenu="ngbDropdown">
+        <button ngbDropdownAnchor (click)="dropdownMenu.toggle()" class="navlink btn menu dropdown-toggle" data-toggle="dropdown">{{user.nick}}</button>
+        <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right dropdown-menu__red">
+          <a class="dropdown-item menu" routerLink="/followed">Obserwowani</a>
+          <a class="dropdown-item menu" routerLink="/account">Moje konto</a>
+          <a class="dropdown-item menu" (click)="logout()">Wyloguj</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
