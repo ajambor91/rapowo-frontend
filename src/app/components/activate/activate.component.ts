@@ -22,7 +22,9 @@ export class ActivateComponent implements OnInit {
     }, 1000);
   }
   ngOnInit() {
-    this.userService.activateAccount(this.route.paramMap.subscribe(params => params.get('hash'))).subscribe(
+    let hash;
+    this.route.paramMap.subscribe(params => {hash = params.get('hash'); });
+    this.userService.activateAccount(hash).subscribe(
       response => {
                 if (response.status) {
                   this.activate = true;
@@ -31,6 +33,8 @@ export class ActivateComponent implements OnInit {
             error => {
                 if(error.status === 400){
                   this.activate = false;
+                }else if (error.status === 409){
+                  this.activate = true;
                 }
             });
     this.timer();

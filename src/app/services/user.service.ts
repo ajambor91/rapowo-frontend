@@ -26,8 +26,7 @@ export class UserService {
   registerUser(params: RegisterParams): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(`${API_CONFIG.api}/user/register`, params);
   }
-
-  activateAccount(hash: Subscription): Observable<ActivateResponse> {
-    return this.http.get<ActivateResponse>(`${API_CONFIG}/user/activate/${hash}`);
+  activateAccount(hash: string): Observable<ActivateResponse> {
+    return this.http.put<ActivateResponse>(`${API_CONFIG.api}/user/activate/${hash}`, null);
   }
 }
