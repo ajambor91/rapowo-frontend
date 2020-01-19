@@ -37,6 +37,7 @@ export class RegistrationFormComponent {
     }
   };
   submit = false;
+  submitted = false;
   registerForm = this.formBuilder.group({
     nick: ['', [Validators.required, Validators.pattern(/[a-zA-Z0-9]{3,48}/), this.asyncValidator.checkNick()]],
     email: ['', [Validators.required, Validators.email, this.asyncValidator.checkEmail()]],
@@ -71,9 +72,10 @@ export class RegistrationFormComponent {
   registerUser() {
     this.submit = true;
     console.log(this.registerForm);
-    if(this.registerForm.invalid){
+    if(this.registerForm.invalid || this.submitted){
       return;
     }
+    this.submitted = true;
     this.api.registerUser(this.registerForm.value).subscribe(response => {
       if(response.status){
         this.router.navigate(['registry-success']);

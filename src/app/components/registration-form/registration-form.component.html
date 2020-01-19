@@ -76,7 +76,7 @@
     <div class="row">
       <div class="col-12">
         <div class="form-group text-center mt-5">
-          <button [disabled]="registerForm.errors" id="submit" role="button" class="d-inline btn rapowo__btn">Zarejestruj się!</button>
+          <button id="submit" role="button" class="d-inline btn rapowo__btn"><span class="button-content" *ngIf="!submitted; else spinner">Zarejestruj się!</span><ng-template #spinner><img class="button-content button-loader" src="assets/loaders/button_loader.gif"></ng-template></button>
         </div>
       </div>
     </div>

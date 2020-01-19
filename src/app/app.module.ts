@@ -18,6 +18,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbDateParserFormatter, NgbDatepickerModule, NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbDateFormatterCustom} from './helpers/ngbDateFormatterCustom';
 import { RegistrySuccessComponent } from './components/registry-success/registry-success.component';
+import { ActivateComponent } from './components/activate/activate.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RegistrySuccessComponent } from './components/registry-success/registry
     AddTextComponent,
     MainComponent,
     LoginComponent,
-    RegistrySuccessComponent
+    RegistrySuccessComponent,
+    ActivateComponent
 
   ],
   imports: [

@@ -5,13 +5,15 @@ import {AddTextComponent} from './components/add-text/add-text.component';
 import {MainComponent} from './components/main/main.component';
 import {LoginComponent} from './components/login/login.component';
 import {RegistrySuccessComponent} from './components/registry-success/registry-success.component';
+import {ActivateComponent} from './components/activate/activate.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent},
   { path: 'registry', component: RegistrationFormComponent },
   { path: 'add-text', component: AddTextComponent, canActivate: ['/']},
   { path: 'login', component: LoginComponent},
-  { path: 'registry-success', component: RegistrySuccessComponent}
+  { path: 'registry-success', component: RegistrySuccessComponent},
+  { path: 'activate-account/:hash', component: ActivateComponent}
 
 ];
 

@@ -1,0 +1,10 @@
+<div class="container mt__100">
+  <div *ngIf="activate">
+    <h2  class="h2 text-center mb-5">Konto zostało aktywowane</h2>
+    <p class="text-center mt__100">Zostaniesz przeniesiony do strony <a routerLink="/login">logowania</a> za {{seconds}} sekund</p>
+  </div>
+  <div *ngIf="!activate">
+    <h2  class="mb-5 h2 text-center">Nie znaleziono użytkownika</h2>
+    <p class="text-center mt__100">Za {{seconds}} sekund zostaniesz przeniesiony na <a routerLink="/">stronę główną</a></p>
+  </div>
+</div>
