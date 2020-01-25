@@ -3,17 +3,7 @@
   <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
     <div class="row">
       <div class="col-md-6">
-
-        <div class="image m-auto text-center">
-          <img id="avatar" (drop)="handleDropImage($event)" class="rounded-circle avatar" [src]="imagePath">
-
-        </div>
-        <div class="form-group mt-5 text-center">
-          <input class="form-control-file file-input border border-white" type="file" name="image"
-                 (change)="getInputFile($event)">
-          <p class="alert" role="alert">Przeciągnij avatar na obrazek, badź wybierz klikając tutaj</p>
-        </div>
-
+        <app-avatar (image)="addAvatar($event)"></app-avatar>
       </div>
       <div class="col-md-6">
         <div class="form">

@@ -3,11 +3,14 @@ import {HttpClient} from '@angular/common/http';
 
 import {UserService} from '../../services/user.service';
 
-import {FormBuilder, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {PasswordValidator} from '../../helpers/validators/password-validator';
 import {AsyncValidator} from '../../helpers/validators/async-validator';
 import {DatepickerModel} from '../../model/helper/datepicker-model';
 import {Router} from '@angular/router';
+import {Avatar} from '../../model/helper/avatar';
+import {AvatarMove} from '../../model/helper/avatar-move';
+import {AvatarSize} from '../../model/helper/avatar-size';
 
 @Component({
   selector: 'app-registration-form',
@@ -23,6 +26,7 @@ export class RegistrationFormComponent {
   constructor(private http: HttpClient, private api: UserService, private formBuilder: FormBuilder, private passwordValidator: PasswordValidator, private asyncValidator: AsyncValidator, private router: Router) {
 
   }
+
   today: Date = new Date();
   datepicker: DatepickerModel = {
     minDate: {
@@ -51,27 +55,55 @@ export class RegistrationFormComponent {
     city: ['', Validators.pattern(/[a-zA-Z]{3,48}/)],
     sex: [''],
     birthdate: [null],
-    name: ['', Validators.pattern(/[a-zA-Z]{3,48}/)]
+    name: ['', Validators.pattern(/[a-zA-Z]{3,48}/)],
+    avatar: this.formBuilder.group({
+      path: [''],
+      size: this.formBuilder.group({
+        sizeX: [''],
+        sizeY: [''],
+      }),
+      moved: this.formBuilder.group({
+        moveX: [''],
+        moveY: ['']
+      })
+    })
   });
-  get form(){
+  get form(): { [p: string]: AbstractControl } {
     return this.registerForm.controls;
   }
-  get passwords(){
+  get passwords(): AbstractControl {
     return this.registerForm.get('passwords');
   }
-  imagePath: string = null;
-
-  ngOnInit() {
-    window.addEventListener('dragover', (e) => {
-      e.preventDefault();
-    }, false);
-    window.addEventListener('drop', (e) => {
-      e.preventDefault();
-    }, false);
+  set avatarSize(size: AvatarSize) {
+    this.registerForm.get('avatar').get('size').setValue(size);
   }
-  registerUser() {
+  set avatarMoved(moved: AvatarMove) {
+    this.registerForm.get('avatar').get('moved').setValue(moved);
+  }
+  set avatarPath(path: string) {
+    this.registerForm.get('avatar').get('path').setValue(path);
+  }
+  addAvatar(avatar: Avatar): void {
+    if (!avatar.path) {
+      return;
+    }
+    const size: AvatarSize = {
+      sizeX: avatar.sizeX,
+      sizeY: avatar.sizeY
+    };
+    const moved: AvatarMove = {
+      moveX: avatar.moveX,
+      moveY: avatar.moveY
+    };
+    const path = avatar.path;
+    this.avatarSize = size;
+    this.avatarMoved = moved;
+    this.avatarPath = path;
+  }
+
+  registerUser(): void {
+    console.log(this.registerForm)
     this.submit = true;
-    console.log(this.registerForm);
     if(this.registerForm.invalid || this.submitted){
       return;
     }
@@ -81,29 +113,6 @@ export class RegistrationFormComponent {
         this.router.navigate(['registry-success']);
       }
     });
-  }
-  handleDropImage(event) {
-
-    event.preventDefault();
-    const file = event.dataTransfer.files[0];
-    this.showImage(file);
-
-  }
-
-  getInputFile(event) {
-    const file = event.target.files[0];
-    this.showImage(file);
-
-
-  }
-  showImage(file) {
-     const fReader = new FileReader();
-     fReader.onload = () => {
-       this.imagePath = fReader.result.toString();
-       // this.user.image = this.imagePath;
-     };
-     fReader.readAsDataURL(file);
-
   }
 
 }

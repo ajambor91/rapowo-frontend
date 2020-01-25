@@ -6,15 +6,15 @@
 }
 .raper_left{
 
-    background-image: url('../../../assets/header/raper_left.png');
+    background-image: url('../../../../assets/header/raper_left.png');
 }
 .banner{
     background-position: center;
-    background-image: url('../../../assets/header/napis.png');
+    background-image: url('../../../../assets/header/napis.png');
 }
 .raper_right{
 
-    background-image: url('../../../assets/header/raper_right.png');
+    background-image: url('../../../../assets/header/raper_right.png');
 }
 header{
   cursor: pointer;

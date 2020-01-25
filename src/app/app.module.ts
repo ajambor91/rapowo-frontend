@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { HeaderComponent } from './components/global/header/header.component';
+import { NavbarComponent } from './components/global/navbar/navbar.component';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AddTextComponent } from './components/add-text/add-text.component';
@@ -19,6 +19,8 @@ import {NgbDateParserFormatter, NgbDatepickerModule, NgbDropdownModule} from '@n
 import {NgbDateFormatterCustom} from './helpers/ngbDateFormatterCustom';
 import { RegistrySuccessComponent } from './components/registry-success/registry-success.component';
 import { ActivateComponent } from './components/activate/activate.component';
+import { AvatarComponent } from './components/global/avatar/avatar.component';
+import { DragBarComponent } from './components/global/drag-bar/drag-bar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ActivateComponent } from './components/activate/activate.component';
     MainComponent,
     LoginComponent,
     RegistrySuccessComponent,
-    ActivateComponent
+    ActivateComponent,
+    AvatarComponent,
+    DragBarComponent
 
   ],
   imports: [

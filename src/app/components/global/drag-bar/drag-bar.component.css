@@ -1,0 +1,33 @@
+div.bar-container{
+  width: 300px;
+  height: 20px;
+  background-color: darkgray;
+  position: relative;
+  box-shadow: #c7141a 0 0 3px 3px;
+  border-radius: 10px;
+}
+
+span.slider{
+
+  top: -2px;
+  display: block;
+  position: absolute;
+  height: 25px;
+  width: 10px;
+  left: 0;
+  background-color: #950318;
+  z-index: 1;
+  border-radius: 3px;
+
+
+}
+div.main-bar{
+  position: absolute;
+  top:0;
+  height: 15px;
+  width: 100%;
+  z-index: 2;
+  opacity: 0;
+  cursor: col-resize;
+
+}

@@ -14,10 +14,7 @@ body
   margin-bottom: 50px;
 }
 
-.avatar{
-  height: 200px;
-  width: 200px;
-}
+
 .required__fields{
   font-size: 1.4em;
   color: #c7141a;
