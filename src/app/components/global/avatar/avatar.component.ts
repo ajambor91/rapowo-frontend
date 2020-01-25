@@ -136,8 +136,8 @@ export class AvatarComponent implements OnInit {
     const avatar: Avatar = {
       sizeX: this.imageSizeX ,
       sizeY: this.imageSizeY,
-      moveX: this.posX,
-      moveY: this.posY,
+      moveX: Math.abs(this.posX),
+      moveY: Math.abs(this.posY),
       path: this.imagePath
     };
     this.image.emit(avatar);
