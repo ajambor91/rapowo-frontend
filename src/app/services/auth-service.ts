@@ -20,12 +20,17 @@ export class AuthService {
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
+  public set editUser(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
+    this.currentUserSubject = new BehaviorSubject<User>(user);
+  }
   login(params: LoginParams) {
     return this.http.put<LoginResponse>(`${API_CONFIG.api}/user/login`, params)
       .pipe(map( user => {
         if (user.status === true) {
           localStorage.setItem('user', JSON.stringify(user.data));
           this.emitter.emit(user.data);
+          this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
           return user.data;
         }
       }));

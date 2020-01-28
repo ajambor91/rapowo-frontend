@@ -16,8 +16,8 @@
       <div *ngIf="user" ngbDropdown #dropdownMenu="ngbDropdown">
         <button ngbDropdownAnchor (click)="dropdownMenu.toggle()" class="navlink btn menu dropdown-toggle" data-toggle="dropdown">{{user.nick}}</button>
         <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right dropdown-menu__red">
-          <a class="dropdown-item menu" routerLink="/followed">Obserwowani</a>
           <a class="dropdown-item menu" routerLink="/account">Moje konto</a>
+          <a class="dropdown-item menu" [routerLink]="['edit-profile', user.id]">Edytuj konto</a>
           <a class="dropdown-item menu" (click)="logout()">Wyloguj</a>
         </div>
       </div>

@@ -1,6 +1,9 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { Avatar } from '../../../model/helper/avatar';
 import {fromEvent} from 'rxjs';
+import {AuthService} from '../../../services/auth-service';
+import {User} from '../../../model/user/user.model';
+import {API_CONFIG} from '../../../config/config.module';
 
 @Component({
   selector: 'app-avatar',
@@ -22,10 +25,19 @@ export class AvatarComponent implements OnInit {
   xMove: number;
   yMove: number;
   avatarCircleSize = 250;
-  imagePath: string = null;
+  imagePath: string;
   invalidImageType: boolean;
   invalidImageSize: boolean;
   imageLoaded: boolean;
+  constructor(private authService: AuthService) {
+    const user: User = this.authService.currentUserValue;
+    if(user){
+      this.imagePath = API_CONFIG.api + '/' + user.avatar;
+      this.imageLoaded = true;
+      this.initialSizeY = 250;
+      this.imageSizeY = 250;
+    }
+  }
   ngOnInit(): void {
     window.addEventListener('dragover', (e) => {
       e.preventDefault();

@@ -1,11 +1,12 @@
 export interface User {
-  id: string;
+  id: number;
   nick: string;
   email: string;
   token: string;
   name?: string;
-  age?: number;
+  birthdate?: string;
+  timestamp?: number;
   city?: string;
-  sex?: number;
-  image?: string;
+  sex?: string;
+  avatar?: string;
 }

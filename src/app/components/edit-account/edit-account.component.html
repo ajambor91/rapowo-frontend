@@ -1,0 +1,4 @@
+<div class="container mt__100">
+  <h2 class="h1 text-center mb-5">Edycja profilu</h2>
+  <app-user-form [timestamp]="user.timestamp" (sendForm)="updateAccount($event)" [submitted]="submitted" [buttonText]="buttonText" [registerForm]="editForm"></app-user-form>
+</div>

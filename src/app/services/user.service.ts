@@ -7,6 +7,8 @@ import {RegisterResponse} from '../model/user/register-response';
 import {RegisterParams} from '../model/user/register-params';
 import {CheckEmailResponse} from '../model/user/check-email-response';
 import {ActivateResponse} from '../model/user/activate-response';
+import {User} from '../model/user/user.model';
+import {UpdateResponse} from '../model/user/update-response';
 
 
 @Injectable({ providedIn: 'root' })
@@ -28,5 +30,8 @@ export class UserService {
   }
   activateAccount(hash: string): Observable<ActivateResponse> {
     return this.http.put<ActivateResponse>(`${API_CONFIG.api}/user/activate/${hash}`, null);
+  }
+  updateAccount(id: number, user: User): Observable<UpdateResponse> {
+    return this.http.put<UpdateResponse>(`${API_CONFIG.api}/user/edit-profile/${id}`, user);
   }
 }

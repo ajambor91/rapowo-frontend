@@ -9,4 +9,9 @@ export interface DatepickerModel {
     month: number;
     day: number;
   };
+  startDate: {
+    year: number | null;
+    month: number | null;
+    day: number | null;
+  };
 }
