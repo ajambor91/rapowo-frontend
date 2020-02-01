@@ -4,4 +4,5 @@ export interface Avatar {
   moveX: number;
   moveY: number;
   path: string;
+  removed?: boolean;
 }

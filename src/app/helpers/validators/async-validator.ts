@@ -24,6 +24,7 @@ export class AsyncValidator {
   }
   checkEmail() {
     return (control: AbstractControl | null) => {
+      console.log(this.user);
       if (this.user && control.value === this.user.email) {
         return null;
       }

@@ -4,6 +4,7 @@ import {fromEvent} from 'rxjs';
 import {AuthService} from '../../../services/auth-service';
 import {User} from '../../../model/user/user.model';
 import {API_CONFIG} from '../../../config/config.module';
+import {AvatarService} from '../../../services/avatar-service';
 
 @Component({
   selector: 'app-avatar',
@@ -14,6 +15,7 @@ export class AvatarComponent implements OnInit {
 
   @ViewChild('avatar', {static: true}) avatar: ElementRef;
   @Output() image = new EventEmitter<any>();
+  avatarInput;
   down = false;
   posX = 0;
   posY = 0;
@@ -29,15 +31,23 @@ export class AvatarComponent implements OnInit {
   invalidImageType: boolean;
   invalidImageSize: boolean;
   imageLoaded: boolean;
-  constructor(private authService: AuthService) {
+  removed = false;
+  constructor(private authService: AuthService, private avatarService: AvatarService) {
     const user: User = this.authService.currentUserValue;
-    if(user){
-      this.imagePath = API_CONFIG.api + '/' + user.avatar;
+    if(user && user.avatar && user.avatar.path !== ''){
       this.imageLoaded = true;
-      this.initialSizeY = 250;
-      this.imageSizeY = 250;
+      this.posX = -user.avatar.moveX;
+      this.posY = -user.avatar.moveY;
+      this.imageSizeX = user.avatar.sizeX;
+      this.imageSizeY = user.avatar.sizeY;
+      this.initialSizeX = user.avatar.sizeX;
+      this.initialSizeY = user.avatar.sizeY;
+      this.avatarService.getAvatar(user.avatar.path).subscribe(blob => {
+        this.showExistingImage(blob);
+      });
     }
   }
+
   ngOnInit(): void {
     window.addEventListener('dragover', (e) => {
       e.preventDefault();
@@ -49,7 +59,22 @@ export class AvatarComponent implements OnInit {
       this.down = false;
     });
   }
+  showExistingImage(image){
+    const fReader = new FileReader();
+    fReader.onload = () =>{
+      const path = fReader.result.toString();
+      this.imagePath = path;
+    };
+    fReader.readAsDataURL(image);
 
+  }
+  removeAvatar(): void {
+    this.imagePath = null;
+    this.imageLoaded = false;
+    this.avatarInput = null;
+    this.removed = true;
+    this.emitAvatar();
+  }
   handleDropImage(event): void {
     event.stopPropagation();
     event.preventDefault();
@@ -62,6 +87,7 @@ export class AvatarComponent implements OnInit {
     this.showImage(file);
   }
   showImage(file): void {
+    console.log(file,'file')
     const fReader = new FileReader();
     fReader.onload = () => {
       const path = fReader.result.toString();
@@ -72,6 +98,7 @@ export class AvatarComponent implements OnInit {
         this.invalidImageSize = false;
         this.imagePath = null;
         this.imageLoaded = false;
+        this.removed = true;
         return;
       }
       this.invalidImageType = false;
@@ -80,12 +107,15 @@ export class AvatarComponent implements OnInit {
       image.onload = () => {
         const width = image.width;
         const height = image.height;
+        this.imageSizeX = 250;
+        this.initialSizeX = 250;
         const imageSizeFactor = width / this.imageSizeX;
         this.imageSizeY = height / imageSizeFactor;
         this.initialSizeY = this.imageSizeY;
-        if (height < 250 || width < 250) {
+        if (height < 250 || width < 250 || this.initialSizeY < 250 || this.initialSizeX < 250) {
           this.invalidImageSize = true;
           this.imagePath = null;
+          this.removed = true;
           this.imageLoaded = false;
           return;
         }
@@ -95,6 +125,8 @@ export class AvatarComponent implements OnInit {
         if (!this.invalidImageSize) {
           this.imagePath = path;
           this.imageLoaded = true;
+          this.posY = 0;
+          this.posX = 0;
           this.emitAvatar();
         }
       });
@@ -145,12 +177,14 @@ export class AvatarComponent implements OnInit {
     this.emitAvatar();
   }
   emitAvatar(): void {
+    console.log(this.removed);
     const avatar: Avatar = {
       sizeX: this.imageSizeX ,
       sizeY: this.imageSizeY,
       moveX: Math.abs(this.posX),
       moveY: Math.abs(this.posY),
-      path: this.imagePath
+      path: this.imagePath,
+      removed: this.removed
     };
     this.image.emit(avatar);
   }

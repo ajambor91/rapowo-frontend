@@ -1,19 +1,20 @@
 <div class="image m-auto text-center">
   <app-drag-bar (factor)="resizeAvatar($event)"></app-drag-bar>
   <div #avatar id="avatar" (mousedown)="mouseDown($event)" (mousemove)="moveImage($event)"
-       class="avatar mt-4"
+       class="position-relative avatar mt-4"
        [ngStyle]="{'background-image':'url('+imagePath+')','background-position-x':posX  + 'px', 'background-position-y':posY + 'px','background-size':imageSizeX + 'px'}" (drop)="handleDropImage($event)">
+    <span class="position-absolute close" (click)="removeAvatar()">&times;</span>
     <p  *ngIf="!imageLoaded" class="avatar-info" role="alert">Przeciągnij avatar tutaj</p>
 
   </div>
 </div>
 <div class="form-group mt-5 text-center">
   <input id="avatar-input" accept="image/*" class="form-control-file file-input border border-white" type="file" name="avatar"
-         (change)="getInputFile($event)">
+         [(ngModel)]="avatarInput" (change)="getInputFile($event)">
   <label class="avatar-label mb-1" for="avatar-input">Wybierz obrazek</label>
 
   <span *ngIf="invalidImageType">Nieprawidłowy format pliku</span>
-  <span *ngIf="invalidImageSize">Obrazek powinien mieć minimalnie 250x250 pikseli</span>
+  <span *ngIf="invalidImageSize">Obrazek jest zbyt mały lub ma nieprawidłowe proporcje</span>
 </div>
 
 

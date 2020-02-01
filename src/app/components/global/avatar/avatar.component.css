@@ -6,10 +6,26 @@
   background-repeat: no-repeat;
   vertical-align: middle;
   text-align: center;
-  box-shadow: #c7141a 0 0 3px 3px;
+  box-shadow: #c7141a 0 0 3px 4px;
   line-height: 250px;
   cursor: pointer;
-
+  transition: box-shadow .5s;
+}
+.avatar:hover{
+  box-shadow: #fff 0 0 3px 4px;
+  transition: box-shadow .5s;
+}
+.close{
+  right: 0;
+  top: 0;
+  color: #fff;
+  transition: color .5s;
+  box-shadow: none;
+}
+.close:hover{
+  color: #c7141a;
+  transition: color .5s;
+  box-shadow: none;
 }
 .avatar-info{
   vertical-align: middle;
@@ -32,4 +48,10 @@ input[type="file"]{
   cursor: pointer;
   margin-top: -25px;
   z-index: 2;
+  box-shadow: #fff 0 0 3px 2px;
+  transition: color .5s;
+}
+.avatar-label:hover{
+  color: #011214;
+  transition: color .5s;
 }

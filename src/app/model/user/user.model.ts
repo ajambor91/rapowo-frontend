@@ -1,3 +1,5 @@
+import {Avatar} from '../helper/avatar';
+
 export interface User {
   id: number;
   nick: string;
@@ -8,5 +10,5 @@ export interface User {
   timestamp?: number;
   city?: string;
   sex?: string;
-  avatar?: string;
+  avatar?: Avatar;
 }

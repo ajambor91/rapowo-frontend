@@ -5,6 +5,9 @@ import {UserService} from '../../services/user.service';
 import {PasswordValidator} from '../../helpers/validators/password-validator';
 import {AsyncValidator} from '../../helpers/validators/async-validator';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {NotificationDialogComponent} from '../global/notification-dialog/notification-dialog.component';
+import {ErrorService} from '../../services/error-service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +16,7 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent{
 
-  constructor(private http: HttpClient, private api: UserService, private formBuilder: FormBuilder, private passwordValidator: PasswordValidator, private asyncValidator: AsyncValidator, private router: Router) {
+  constructor(private errorService: ErrorService, private dialog: MatDialog, private http: HttpClient, private api: UserService, private formBuilder: FormBuilder, private passwordValidator: PasswordValidator, private asyncValidator: AsyncValidator, private router: Router) {
   }
   buttonText = "Zarejestruj się!";
   submitted = false;
@@ -57,6 +60,14 @@ export class RegisterComponent{
       if(response.status){
         this.router.navigate(['registry-success']);
       }
-    });
+    },
+      error => {
+      this.submitted = false;
+      const dialog = this.dialog.open(NotificationDialogComponent, {
+         width: '250px',
+        panelClass: 'custom-modal',
+        data: this.errorService.errorMessageValue.value
+      });
+      });
   }
 }

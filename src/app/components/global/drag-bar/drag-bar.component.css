@@ -3,24 +3,34 @@ div.bar-container{
   height: 20px;
   background-color: darkgray;
   position: relative;
-  box-shadow: #c7141a 0 0 3px 3px;
   border-radius: 10px;
+  box-shadow: #fff 0 0 2px 3px;
+  transition: box-shadow .5s;
 }
-
+div.bar-container:hover{
+  transition: box-shadow .5s;
+  box-shadow: #c7141a 0 0 2px 3px;
+}
+div.bar-container:hover span.slider{
+  box-shadow: #fff 0 0 1px 2px;
+  transition: box-shadow .5s;
+}
 span.slider{
-
+  transition: box-shadow .5s;
   top: -2px;
   display: block;
   position: absolute;
   height: 25px;
   width: 10px;
   left: 0;
-  background-color: #950318;
+  background-color: #c7141a;
   z-index: 1;
   border-radius: 3px;
 
 
 }
+
+
 div.main-bar{
   position: absolute;
   top:0;

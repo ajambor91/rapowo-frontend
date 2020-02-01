@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/global/header/header.component';
 import { NavbarComponent } from './components/global/navbar/navbar.component';
 import { UserFormComponent } from './components/global/user-form/user-form.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AddTextComponent } from './components/add-text/add-text.component';
 import {MainComponent} from './components/main/main.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,6 +23,10 @@ import { AvatarComponent } from './components/global/avatar/avatar.component';
 import { DragBarComponent } from './components/global/drag-bar/drag-bar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { EditAccountComponent } from './components/edit-account/edit-account.component';
+import {HttpInterceptorim} from './helpers/interceptors/http-interceptor';
+import {ErrorInterceptor} from './helpers/interceptors/error-interceptor';
+import { NotificationDialogComponent } from './components/global/notification-dialog/notification-dialog.component';
+import {MatDialogModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -38,27 +42,33 @@ import { EditAccountComponent } from './components/edit-account/edit-account.com
     AvatarComponent,
     DragBarComponent,
     RegisterComponent,
-    EditAccountComponent
+    EditAccountComponent,
+    NotificationDialogComponent
 
   ],
-  imports: [
-    NgbDropdownModule,
-    NgbDatepickerModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-  ],
-  providers: [PasswordValidator, AsyncValidator, [{provide: NgbDateParserFormatter, useClass: NgbDateFormatterCustom}]],
-  bootstrap: [AppComponent]
+    imports: [
+        NgbDropdownModule,
+        NgbDatepickerModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        MatDialogModule,
+        FormsModule
+    ],
+  providers: [ PasswordValidator, AsyncValidator, [{provide: NgbDateParserFormatter, useClass: NgbDateFormatterCustom},{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorim, multi: true},{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}]],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    NotificationDialogComponent
+  ]
 })
 export class AppModule { }
 export function HttpLoaderFactory(http: HttpClient) {
