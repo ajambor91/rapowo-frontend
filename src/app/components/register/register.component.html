@@ -1,4 +1,4 @@
 <div class="container mt__100">
-  <h2 class="h1 text-center mb-5">Rejestracja</h2>
-  <app-user-form [buttonText]="buttonText" [submitted]="submitted" [registerForm]="registerForm" (sendForm)="registerUser($event)"></app-user-form>
+  <h2 class="h1 text-center mb-5">{{ "Rejestracja" | translate}}</h2>
+  <app-user-form [buttonText]="buttonText" [submitted]="submitted" [registerForm]="registerForm" (sendForm)="openRule()"></app-user-form>
 </div>

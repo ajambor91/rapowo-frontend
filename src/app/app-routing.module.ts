@@ -7,6 +7,7 @@ import {RegistrySuccessComponent} from './components/registry-success/registry-s
 import {ActivateComponent} from './components/activate/activate.component';
 import {RegisterComponent} from './components/register/register.component';
 import {EditAccountComponent} from './components/edit-account/edit-account.component';
+import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registry-success', component: RegistrySuccessComponent},
   { path: 'activate-account/:hash', component: ActivateComponent},
-  { path: 'edit-profile/:id', component: EditAccountComponent}
+  { path: 'edit-profile/:id', component: EditAccountComponent},
+  { path: 'reset-password', component: ResetPasswordComponent}
 
 ];
 

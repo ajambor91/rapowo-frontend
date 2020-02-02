@@ -21,7 +21,7 @@ body
   margin: 5px 0 2px 10px;
 }
 
-.rapowo__btn, .btn:focus, .rapowo__btn:focus{
+.rapowo__btn, .rapowo__btn:focus{
   margin: auto;
   width: 300px;
   height: 50px;
@@ -35,13 +35,16 @@ body
   transition: color .5s;
 
 }
+btn:focus {
+  box-shadow: #fff 0 0 3px 2px;
+}
 .rapowo__btn:hover{
   color: #011214;
   transition: color .5s;
 }
 
 .button-content{
-  flex: 0 0 40px;
+  /*flex: 0 0 40px;*/
 }
 .button-loader{
   height: 40px;
@@ -67,3 +70,57 @@ input[type="text"]:focus, input[type="password"]:focus{
   box-shadow: #c7141a 0 0 3px 4px;
   transition: box-shadow .5s;
 }
+.rules-dialog mat-dialog-container{
+  background-color: #011214;
+  color: #fff;
+  box-shadow: #fff 0 0 4px 4px;
+}
+
+ngb-datepicker, ngb-datepicker-navigation, ngb-datepicker-month-view, ngb-datepicker-navigation-select {
+  background-color: #011214 !important;
+}
+.ngb-dp-weekday, .ngb-dp-month{
+  background-color: #011214 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+
+}
+.btn-light{
+  color: #fff !important;
+  box-shadow: none !important;
+
+}
+ngb-datepicker-navigation-select select{
+  color: #fff !important;
+  background-color: #c7141a !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ngb-dp-weekday:hover, .ngb-dp-weekday:focus, .btn-light:hover, .btn-light:focus, .btn-light:active, .bg-primary{
+  background-color: #c7141a !important;
+  box-shadow: #FFFFFF !important;
+  border: none !important;
+}
+.ngb-dp-day:focus, .bg-primary:focus, .ngb-dp-day:active, .bg-primary:active, .btn-light:active, .text-white:focus  {
+  box-shadow: none !important;
+  border: none !important;
+}
+.ngb-dp-week{
+  padding: 0 !important;
+}
+.active, .active:focus{
+  background-color: #c7141a !important;
+  box-shadow: none !important;
+}
+.ngb-dp-navigation-chevron{
+  color: #c7141a !important;
+}
+div:focus{
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+
+
+

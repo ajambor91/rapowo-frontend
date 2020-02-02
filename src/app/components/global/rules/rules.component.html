@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="col-12">
+    <h3 class="h3 text-center" mat-dialog-title>{{ "Regulamin" | translate }}</h3>
+    <p mat-dialog-content></p>
+    <div class="form-check">
+      <input [(ngModel)]="textAgreement" class="form-check-input" id="text-agreement" type="checkbox">
+      <label for="text-agreement">{{ "Chcę otrzymywać powiadomienia o nowych tekstach" | translate }}</label>
+    </div>
+  </div>
+  <div class="col-12 d-flex justify-content-center">
+    <button class="rapowo__btn rules-button" (click)="disagreeRule()" tabindex="-1">{{ "Nie akceptuję regulaminu" | translate }}</button>
+    <button class="rapowo__btn rules-button" (click)="accepredRule()" tabindex="1">{{ "Akceptuję regulamin" | translate }}</button>
+  </div>
+</div>

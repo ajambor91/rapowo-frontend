@@ -1,10 +1,10 @@
 <div class="container mt__100">
   <div *ngIf="activate">
-    <h2  class="h2 text-center mb-5">Konto zostało aktywowane</h2>
-    <p class="text-center mt__100">Zostaniesz przeniesiony do strony <a routerLink="/login">logowania</a> za {{seconds}} sekund</p>
+    <h2  class="h2 text-center mb-5">{{ "Konto zostało aktywowane" | translate}}</h2>
+    <p class="text-center mt__100">{{ "Zostaniesz przeniesiony do strony" | translate }} <a routerLink="/login">{{ "logowania" | translate }}</a> {{ "za" | translate }} {{seconds}} {{ "sekund" | translate}}}</p>
   </div>
   <div *ngIf="!activate">
-    <h2  class="mb-5 h2 text-center">Nie znaleziono użytkownika, bądź konto jest już aktywne</h2>
-    <p class="text-center mt__100">Za {{seconds}} sekund zostaniesz przeniesiony na <a routerLink="/">stronę główną</a></p>
+    <h2  class="mb-5 h2 text-center">{{ "Nie znaleziono użytkownika, bądź konto jest już aktywne" | translate }}</h2>
+    <p class="text-center mt__100">{{ "Za" | translate}} {{seconds}} {{ "sekund zostaniesz przeniesiony na" | translate }} <a routerLink="/">{{ "stronę główną" | translate}}</a></p>
   </div>
 </div>

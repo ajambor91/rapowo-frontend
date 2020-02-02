@@ -6,11 +6,15 @@ import {AvatarMove} from '../../../model/helper/avatar-move';
 import {AvatarSize} from '../../../model/helper/avatar-size';
 import {ErrorModel} from '../../../model/helper/error-model';
 import {Birthdate} from '../../../model/helper/birthdate';
+import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
+import {CustomDatepickerI18n} from '../../../services/datepickeri18n';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css'],
+  providers: [{provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}]
+
 })
 
 export class UserFormComponent implements OnInit{
@@ -76,6 +80,7 @@ export class UserFormComponent implements OnInit{
     this.registerForm.get('avatar').get('path').setValue(path);
   }
   set removedAvatar(removed: boolean){
+    if(!this.registerForm.get('avatar').get('removed')) return;
     this.registerForm.get('avatar').get('removed').setValue(true);
   }
   setObjectToBirthdate(){

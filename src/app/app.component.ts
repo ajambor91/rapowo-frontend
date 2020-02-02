@@ -14,7 +14,7 @@ export class AppComponent {
   user: User;
 
   constructor(private translate: TranslateService, private authService: AuthService) {
-    translate.setDefaultLang('eng');
+    translate.setDefaultLang('pl');
     this.user = authService.currentUserValue;
   }
 }

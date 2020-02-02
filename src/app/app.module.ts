@@ -27,6 +27,8 @@ import {HttpInterceptorim} from './helpers/interceptors/http-interceptor';
 import {ErrorInterceptor} from './helpers/interceptors/error-interceptor';
 import { NotificationDialogComponent } from './components/global/notification-dialog/notification-dialog.component';
 import {MatDialogModule} from '@angular/material';
+import { RulesComponent } from './components/global/rules/rules.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import {MatDialogModule} from '@angular/material';
     DragBarComponent,
     RegisterComponent,
     EditAccountComponent,
-    NotificationDialogComponent
+    NotificationDialogComponent,
+    RulesComponent,
+    ResetPasswordComponent
 
   ],
     imports: [
@@ -67,7 +71,8 @@ import {MatDialogModule} from '@angular/material';
   providers: [ PasswordValidator, AsyncValidator, [{provide: NgbDateParserFormatter, useClass: NgbDateFormatterCustom},{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorim, multi: true},{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}]],
   bootstrap: [AppComponent],
   entryComponents: [
-    NotificationDialogComponent
+    NotificationDialogComponent,
+    RulesComponent
   ]
 })
 export class AppModule { }

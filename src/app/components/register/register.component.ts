@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {NotificationDialogComponent} from '../global/notification-dialog/notification-dialog.component';
 import {ErrorService} from '../../services/error-service';
+import {RulesComponent} from '../global/rules/rules.component';
 
 @Component({
   selector: 'app-register',
@@ -30,6 +31,7 @@ export class RegisterComponent{
         validator: this.passwordValidator.matchPasswords()
       }
     ),
+    agreement: [],
     city: ['', Validators.pattern(/[a-zA-Z]{3,48}/)],
     sex: [''],
     birthdate: [null],
@@ -46,15 +48,33 @@ export class RegisterComponent{
       })
     })
   });
-
-  registerUser(event: any): void {
-    if(!event){
-      return;
-    }
-    console.log(this.registerForm)
+  openRule(){
     if(this.registerForm.invalid || this.submitted){
       return;
     }
+    const dialogRule = this.dialog.open(RulesComponent,{
+      width: '80%',
+      panelClass: 'rules-dialog'
+    });
+    dialogRule.afterClosed().subscribe(rule => {
+      if(rule.rule){
+        if(rule.text){
+          this.registerForm.get('agreement').setValue(true);
+        }
+        this.registerUser();
+      } else {
+        this.dialog.open(NotificationDialogComponent,{
+          width: '450px',
+          data: {
+            title: 'Błąd',
+            desc: 'Musisz zaakaceptować regulamin, żeby się zarejestrować!'
+          },
+          panelClass: 'custom-modal'
+        });
+      }
+    });
+  }
+  registerUser(): void {
     this.submitted = true;
     this.api.registerUser(this.registerForm.value).subscribe(response => {
       if(response.status){

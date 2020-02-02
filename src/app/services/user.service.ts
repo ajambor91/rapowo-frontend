@@ -9,6 +9,8 @@ import {CheckEmailResponse} from '../model/user/check-email-response';
 import {ActivateResponse} from '../model/user/activate-response';
 import {User} from '../model/user/user.model';
 import {UpdateResponse} from '../model/user/update-response';
+import {ResetPasswordResponse} from '../model/user/reset-password-response';
+import {ResetPasswordParams} from '../model/user/reset-password-params';
 
 
 @Injectable({ providedIn: 'root' })
@@ -33,5 +35,8 @@ export class UserService {
   }
   updateAccount(id: number, user: User): Observable<UpdateResponse> {
     return this.http.put<UpdateResponse>(`${API_CONFIG.api}/user/edit-profile/${id}`, user);
+  }
+  resetPassword(params: ResetPasswordParams): Observable<ResetPasswordResponse> {
+    return this.http.put<ResetPasswordResponse>( `${API_CONFIG.api}/user/reset-password-msg`, params);
   }
 }

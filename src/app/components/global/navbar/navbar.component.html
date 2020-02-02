@@ -3,22 +3,22 @@
     <div class="navbar-collapse collapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a routerLink="/" class="navlink menu">Teksty</a>
+          <a routerLink="/" class="navlink menu">{{ "Teksty" | translate }}</a>
         </li>
         <li class="nav-item" *ngIf="user">
-          <a class="navlink menu" routerLink="/add-text">Dodaj tekst</a>
+          <a class="navlink menu" routerLink="/add-text">{{ "Dodaj tekst" | translate }}</a>
 
         </li>
 
 
       </ul>
-      <a *ngIf="!user"  role="button" routerLink="/login" class="menu">Zaloguj się!</a>
+      <a *ngIf="!user"  role="button" routerLink="/login" class="menu">{{ "Zaloguj się!" | translate }}</a>
       <div *ngIf="user" ngbDropdown #dropdownMenu="ngbDropdown">
         <button ngbDropdownAnchor (click)="dropdownMenu.toggle()" class="navlink menu dropdown-toggle" data-toggle="dropdown">{{user.nick}}</button>
         <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right dropdown-menu__red">
-          <a class="dropdown-item menu" routerLink="/account">Moje konto</a>
-          <a class="dropdown-item menu" [routerLink]="['edit-profile', user.id]">Edytuj konto</a>
-          <a class="dropdown-item menu" (click)="logout()">Wyloguj</a>
+          <a class="dropdown-item menu" routerLink="/account">{{ "Moje konto" | translate }}</a>
+          <a class="dropdown-item menu" [routerLink]="['edit-profile', user.id]">{{ "Edytuj konto" | translate }}</a>
+          <a class="dropdown-item menu" (click)="logout()">{{ "Wyloguj" | translate }}</a>
         </div>
       </div>
     </div>

@@ -1,0 +1,13 @@
+a.rapowo-link{
+  color: #c7141a;
+}
+a.rapowo-link:visited{
+  text-decoration: none;
+}
+a.rapowo-link:hover{
+  text-decoration: underline;
+  transition: text-decoration .5s;
+}
+p.rapowo-link:first-of-type{
+  margin-top: 15px;
+}
