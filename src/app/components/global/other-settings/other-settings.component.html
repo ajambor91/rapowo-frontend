@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <form (ngSubmit)="submit()" [formGroup]="otherSettingsForm">
+    <div class="row">
+      <div class="col-11 cols-sm-12 offset-md-1">
+        <div class="form-group">
+          <input type="checkbox" id="delete-user" formControlName="deleteUser" class="form-check-input" value="del-user">
+          <label for="delete-user">{{"Usuń konto" | translate}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group text-center mt-5">
+          <button id="submit" role="button" class="d-inline btn rapowo__btn"><span class="button-content" *ngIf="!submitted; else spinner">{{"Zapisz" | translate}}</span><ng-template #spinner><img class="button-content button-loader" src="assets/loaders/button_loader.gif"></ng-template></button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

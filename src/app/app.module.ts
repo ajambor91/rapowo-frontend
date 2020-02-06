@@ -22,13 +22,20 @@ import { ActivateComponent } from './components/activate/activate.component';
 import { AvatarComponent } from './components/global/avatar/avatar.component';
 import { DragBarComponent } from './components/global/drag-bar/drag-bar.component';
 import { RegisterComponent } from './components/register/register.component';
-import { EditAccountComponent } from './components/edit-account/edit-account.component';
+import { EditAccountComponent } from './components/global/edit-account/edit-account.component';
 import {HttpInterceptorim} from './helpers/interceptors/http-interceptor';
 import {ErrorInterceptor} from './helpers/interceptors/error-interceptor';
 import { NotificationDialogComponent } from './components/global/notification-dialog/notification-dialog.component';
-import {MatDialogModule} from '@angular/material';
+import {MatDialogModule, MatTabsModule} from '@angular/material';
 import { RulesComponent } from './components/global/rules/rules.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ResetPasswordSuccessComponent } from './components/reset-password-success/reset-password-success.component';
+import { ResetPasswordInformationComponent } from './components/reset-password-information/reset-password-information.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { MailingSettingsComponent } from './components/global/mailing-settings/mailing-settings.component';
+import { OtherSettingsComponent } from './components/global/other-settings/other-settings.component';
+import { PasswordVerifyDialogComponent } from './components/global/password-verify-dialog/password-verify-dialog.component';
+import { DeleteUserInfoComponent } from './components/delete-user-info/delete-user-info.component';
 
 @NgModule({
   declarations: [
@@ -47,32 +54,41 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     EditAccountComponent,
     NotificationDialogComponent,
     RulesComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ResetPasswordSuccessComponent,
+    ResetPasswordInformationComponent,
+    SettingsComponent,
+    MailingSettingsComponent,
+    OtherSettingsComponent,
+    PasswordVerifyDialogComponent,
+    DeleteUserInfoComponent
 
   ],
-    imports: [
-        NgbDropdownModule,
-        NgbDatepickerModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        }),
-        MatDialogModule,
-        FormsModule
-    ],
+  imports: [
+    NgbDropdownModule,
+    NgbDatepickerModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    MatDialogModule,
+    FormsModule,
+    MatTabsModule
+  ],
   providers: [ PasswordValidator, AsyncValidator, [{provide: NgbDateParserFormatter, useClass: NgbDateFormatterCustom},{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorim, multi: true},{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}]],
   bootstrap: [AppComponent],
   entryComponents: [
     NotificationDialogComponent,
-    RulesComponent
+    RulesComponent,
+    PasswordVerifyDialogComponent
   ]
 })
 export class AppModule { }

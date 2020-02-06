@@ -120,7 +120,35 @@ div:focus{
   outline: 0 !important;
   box-shadow: none !important;
 }
-
-
+.mat-tab-link {
+  color: #fff;
+  font-size: 1.1em;
+}
+.mat-tab-link:visited{
+  color: #fff;
+}
+.mat-tab-link:active, .mat-tab-link:focus{
+  color: #c7141a;
+}
+.mat-tab-link:hover{
+  text-decoration: none;
+}
+.mat-ink-bar{
+  background-color: #c7141a !important;
+  border: none;
+}
+.mat-ripple-element {
+  background-color: rgba(199, 20, 26, .4);
+}
+.rapowo__btn-black{
+  width: 150px;
+  background-color: #011214;
+  color: #fff;
+  box-shadow: #fff 0 0 4px 3px;
+  display: inline-block;
+}
+.rapowo__btn-black:hover{
+  box-shadow: #fff 0 0 4px 3px;
+}
 
 

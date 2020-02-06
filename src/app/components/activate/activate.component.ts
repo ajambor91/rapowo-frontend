@@ -7,9 +7,26 @@ import {ActivatedRoute, Router} from '@angular/router';
   templateUrl: './activate.component.html',
   styleUrls: ['./activate.component.css']
 })
-export class ActivateComponent implements OnInit {
+export class ActivateComponent{
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
+    let hash;
+    this.route.paramMap.subscribe(params => {hash = params.get('hash'); });
+    this.userService.activateAccount(hash).subscribe(
+      response => {
+        if (response.status) {
+          this.activate = true;
+        }
+      },
+      error => {
+        if(error.status === 400){
+          this.activate = false;
+        }else if (error.status === 409){
+          this.activate = true;
+        }
+      });
+    this.timer();
+  }
   seconds = 10;
   activate: boolean;
   timer() {
@@ -20,23 +37,5 @@ export class ActivateComponent implements OnInit {
         return;
       }
     }, 1000);
-  }
-  ngOnInit() {
-    let hash;
-    this.route.paramMap.subscribe(params => {hash = params.get('hash'); });
-    this.userService.activateAccount(hash).subscribe(
-      response => {
-                if (response.status) {
-                  this.activate = true;
-              }
-            },
-            error => {
-                if(error.status === 400){
-                  this.activate = false;
-                }else if (error.status === 409){
-                  this.activate = true;
-                }
-            });
-    this.timer();
   }
 }

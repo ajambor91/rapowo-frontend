@@ -12,15 +12,17 @@
 
 
       </ul>
-      <a *ngIf="!user"  role="button" routerLink="/login" class="menu">{{ "Zaloguj się!" | translate }}</a>
-      <div *ngIf="user" ngbDropdown #dropdownMenu="ngbDropdown">
+      <a *ngIf="!user; else logged"  role="button" routerLink="/login" class="menu">{{ "Zaloguj się!" | translate }}</a>
+      <ng-template #logged>
+      <div ngbDropdown #dropdownMenu="ngbDropdown">
         <button ngbDropdownAnchor (click)="dropdownMenu.toggle()" class="navlink menu dropdown-toggle" data-toggle="dropdown">{{user.nick}}</button>
         <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right dropdown-menu__red">
           <a class="dropdown-item menu" routerLink="/account">{{ "Moje konto" | translate }}</a>
-          <a class="dropdown-item menu" [routerLink]="['edit-profile', user.id]">{{ "Edytuj konto" | translate }}</a>
+          <a class="dropdown-item menu" [routerLink]="['settings','edit-account']">{{ "Ustawienia konta" | translate }}</a>
           <a class="dropdown-item menu" (click)="logout()">{{ "Wyloguj" | translate }}</a>
         </div>
       </div>
+      </ng-template>
     </div>
   </nav>
 </div>

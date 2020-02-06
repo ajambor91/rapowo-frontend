@@ -1,4 +1,5 @@
 {
+  "Suckes!": "Suckes!",
   "Zaloguj się": "Zaloguj się",
   "Logowanie": "Logowanie",
   "Nie masz konta?" : "Nie masz konta?",
@@ -53,5 +54,21 @@
   "za": "za",
   "Musisz powtórzyć hasło": "Musisz powtórzyć hasło",
   "Zresetuj hasło!": "Zresetuj hasło!",
-  "Resetowanie hasła": "Resetowanie hasła"
+  "Resetowanie hasła": "Resetowanie hasła",
+  "Nie znaleziono użytkownika": "Nie znaleziono użytkownika",
+  "Sprawdź pocztę": "Sprawdź pocztę",
+  "Został wyslany adres email z linkiem do resetowania hasła": "Został wyslany adres email z linkiem do resetowania hasła",
+  "Hasło zostało zresetowane": "Hasło zostało zresetowane",
+  "Ustawienia": "Ustawienia",
+  "Ustawienia konta": "Ustawienia konta",
+  "Ustawienia powiadomień": "Ustawienia powiadomień",
+  "Inne": "Inne",
+  "Usuń konto": "Usuń konto",
+  "Zapisz":"Zapisz",
+  "Konto zostało usunięte!": "Konto zostało usunięte!",
+  "zostaniesz przeniesiony na": "zostaniesz przeniesiony na",
+  "Musisz potwierdzić hasłem usunięcie konta": "Musisz potwierdzić hasłem usunięcie konta",
+  "Potwierdź hasło": "Potwierdź hasło",
+  "Nie usuwaj": "Nie usuwaj"
+
 }

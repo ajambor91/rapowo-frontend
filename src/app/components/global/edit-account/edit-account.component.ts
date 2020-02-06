@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../model/user/user.model';
-import {AuthService} from '../../services/auth-service';
+import {User} from '../../../model/user/user.model';
+import {AuthService} from '../../../services/auth-service';
 import {FormBuilder, Validators} from '@angular/forms';
-import {PasswordValidator} from '../../helpers/validators/password-validator';
-import {UserService} from '../../services/user.service';
-import {AsyncValidator} from '../../helpers/validators/async-validator';
+import {PasswordValidator} from '../../../helpers/validators/password-validator';
+import {UserService} from '../../../services/user.service';
+import {AsyncValidator} from '../../../helpers/validators/async-validator';
 import {MatDialog} from '@angular/material';
-import {NotificationDialogComponent} from '../global/notification-dialog/notification-dialog.component';
-import {ErrorService} from '../../services/error-service';
+import {NotificationDialogComponent} from '../notification-dialog/notification-dialog.component';
+import {ErrorService} from '../../../services/error-service';
 
 @Component({
   selector: 'app-edit-account',
@@ -53,8 +53,9 @@ export class EditAccountComponent {
   }
   buttonText = 'Zaaktualizuj profil!';
   submitted = false;
-  updateAccount(event) {
-    if (!event || this.submitted || this.editForm.invalid) {
+  updateAccount() {
+    console.log('test');
+    if (this.submitted || this.editForm.invalid) {
       return;
     }
     this.submitted = true;

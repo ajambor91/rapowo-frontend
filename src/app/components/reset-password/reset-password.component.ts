@@ -5,6 +5,7 @@ import {UserService} from '../../services/user.service';
 import {MatDialog} from '@angular/material';
 import {ErrorService} from '../../services/error-service';
 import {NotificationDialogComponent} from '../global/notification-dialog/notification-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -13,7 +14,7 @@ import {NotificationDialogComponent} from '../global/notification-dialog/notific
 })
 export class ResetPasswordComponent {
 
-  constructor(private errorService: ErrorService, private userService: UserService, private formBuilder: FormBuilder, private matDialog: MatDialog) { }
+  constructor(private router: Router, private errorService: ErrorService, private userService: UserService, private formBuilder: FormBuilder, private matDialog: MatDialog) { }
   submit = false;
   submitted = false;
   resetPasswordForm = this.formBuilder.group({
@@ -34,7 +35,7 @@ export class ResetPasswordComponent {
     this.submitted = true;
     this.userService.resetPassword(this.resetPasswordForm.value).subscribe(
       resp => {
-        alert('ok');
+        this.router.navigate(['/reset-password-info']);
       },
       error => {
         this.matDialog.open(NotificationDialogComponent,{
