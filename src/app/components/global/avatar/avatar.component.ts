@@ -36,12 +36,6 @@ export class AvatarComponent implements OnInit {
     const user: User = this.authService.currentUserValue;
     if(user && user.avatar && user.avatar.path !== ''){
       this.imageLoaded = true;
-      this.posX = -user.avatar.moveX;
-      this.posY = -user.avatar.moveY;
-      this.imageSizeX = user.avatar.sizeX;
-      this.imageSizeY = user.avatar.sizeY;
-      this.initialSizeX = user.avatar.sizeX;
-      this.initialSizeY = user.avatar.sizeY;
       this.avatarService.getAvatar(user.avatar.path).subscribe(blob => {
         this.showExistingImage(blob);
       });
@@ -64,6 +58,13 @@ export class AvatarComponent implements OnInit {
     fReader.onload = () =>{
       const path = fReader.result.toString();
       this.imagePath = path;
+      const imageFile = new Image();
+      imageFile.src = path;
+      imageFile.onload = () => {
+        const factor = imageFile.width / 250;
+        this.imageSizeY = imageFile.height / factor;
+        this.initialSizeY = this.imageSizeY;
+      };
     };
     fReader.readAsDataURL(image);
 
