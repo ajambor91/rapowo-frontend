@@ -69,6 +69,18 @@
   "zostaniesz przeniesiony na": "zostaniesz przeniesiony na",
   "Musisz potwierdzić hasłem usunięcie konta": "Musisz potwierdzić hasłem usunięcie konta",
   "Potwierdź hasło": "Potwierdź hasło",
-  "Nie usuwaj": "Nie usuwaj"
-
+  "Nie usuwaj": "Nie usuwaj",
+  "newText": "Nowe teksty",
+  "popularText": "Popularne teksty",
+  "mostCommented": "Najczęściej komentowane",
+  "newFollowed": "Nowe teksty obserwowanych",
+  "popularFollowed": "Popularne teksty obserwowanych",
+  "newCommentForUser": "Komentarze do Twoich tekstów",
+  "Zaznacz wszystkie": "Zaznacz wszystkie",
+  "sex": "Płeć",
+  "name": "Imię",
+  "city": "Miejscowość",
+  "male": "Facet",
+  "female": "Laseczka",
+  "age": "Wiek"
 }

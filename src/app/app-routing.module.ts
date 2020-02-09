@@ -13,6 +13,8 @@ import {SettingsComponent} from './components/settings/settings.component';
 import {EditAccountComponent} from './components/global/edit-account/edit-account.component';
 import {OtherSettingsComponent} from './components/global/other-settings/other-settings.component';
 import {DeleteUserInfoComponent} from './components/delete-user-info/delete-user-info.component';
+import {MailingSettingsComponent} from './components/global/mailing-settings/mailing-settings.component';
+import {UserAccountComponent} from './components/user-account/user-account.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent},
@@ -28,9 +30,11 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent, children: [
       { path: '', redirectTo: 'edit-account', pathMatch: 'full'},
       { path: 'edit-account', component: EditAccountComponent},
+      { path: 'notification-settings', component: MailingSettingsComponent},
       { path: 'other-settings', component: OtherSettingsComponent}
     ]},
-  { path: 'delete-user', component: DeleteUserInfoComponent}
+  { path: 'delete-user', component: DeleteUserInfoComponent},
+  { path: 'profile/:id', component: UserAccountComponent}
 
 
 ];

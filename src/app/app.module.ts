@@ -36,6 +36,7 @@ import { MailingSettingsComponent } from './components/global/mailing-settings/m
 import { OtherSettingsComponent } from './components/global/other-settings/other-settings.component';
 import { PasswordVerifyDialogComponent } from './components/global/password-verify-dialog/password-verify-dialog.component';
 import { DeleteUserInfoComponent } from './components/delete-user-info/delete-user-info.component';
+import { UserAccountComponent } from './components/user-account/user-account.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { DeleteUserInfoComponent } from './components/delete-user-info/delete-us
     MailingSettingsComponent,
     OtherSettingsComponent,
     PasswordVerifyDialogComponent,
-    DeleteUserInfoComponent
+    DeleteUserInfoComponent,
+    UserAccountComponent
 
   ],
   imports: [

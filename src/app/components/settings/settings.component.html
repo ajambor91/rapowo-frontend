@@ -4,7 +4,7 @@
     <div class="tabs col-12">
       <nav mat-tab-nav-bar selectedIndex="0" class="mb-5">
         <a mat-tab-link [routerLink]="['edit-account']">{{"Edytuj konto" | translate }}</a>
-        <a mat-tab-link routerLink="/mailing-settings">{{"Ustawienia powiadomień" | translate}}</a>
+        <a mat-tab-link [routerLink]="['notification-settings']">{{"Ustawienia powiadomień" | translate}}</a>
         <a mat-tab-link [routerLink]="['other-settings']">{{"Inne" | translate}}</a>
       </nav>
       <router-outlet></router-outlet>

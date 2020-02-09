@@ -14,6 +14,11 @@ import {ResetPasswordParams} from '../model/user/reset-password-params';
 import {GetUserByHashResponse} from '../model/user/get-user-by-hash-response';
 import {DeleteUserResponse} from '../model/user/delete-user-response';
 import {DeleteUserParams} from '../model/user/delete-user-params';
+import {AgreementResponse} from '../model/user/agreement-response';
+import {SettingsParams} from '../model/user/settings-params';
+import {SettingsResponse} from '../model/user/settings-response';
+import {LoginParams} from '../model/user/login-params';
+import {LoginResponse} from '../model/user/login-response';
 
 
 
@@ -51,6 +56,15 @@ export class UserService {
   }
   deleteUser(deleteUser: DeleteUserParams): Observable<DeleteUserResponse>{
     return this.http.post<DeleteUserResponse>(`${API_CONFIG.api}/user/delete-user/${deleteUser.id}`,{password: deleteUser.password});
+  }
+  getMailingSettings(id: number): Observable<AgreementResponse> {
+    return this.http.get<AgreementResponse>(`${API_CONFIG.api}/user/settings/${id}`);
+  }
+  setMailingSettings(settings: SettingsParams, id: number): Observable<SettingsResponse> {
+    return this.http.put<SettingsResponse>( `${API_CONFIG.api}/user/save-settings/${id}`, settings);
+  }
+  getUserById(id: number): Observable<LoginResponse> {
+    return this.http.get<LoginResponse>(`${API_CONFIG.api}/user/get/${id}`);
   }
 
 }
