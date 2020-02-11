@@ -19,7 +19,7 @@ import {UserAccountComponent} from './components/user-account/user-account.compo
 const routes: Routes = [
   { path: '', component: MainComponent},
   { path: 'registry', component: RegisterComponent },
-  { path: 'add-text', component: AddTextComponent, canActivate: ['/']},
+  { path: 'add-text', component: AddTextComponent },
   { path: 'login', component: LoginComponent},
   { path: 'registry-success', component: RegistrySuccessComponent},
   { path: 'activate-account/:hash', component: ActivateComponent},

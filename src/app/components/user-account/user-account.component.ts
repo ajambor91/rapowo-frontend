@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../model/user/user.model';
 import {UserService} from '../../services/user.service';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-account',
@@ -9,6 +9,7 @@ import {ActivatedRoute, Route, Router} from '@angular/router';
   styleUrls: ['./user-account.component.css']
 })
 export class UserAccountComponent {
+  loader = true;
   user: User;
   userExist = true;
   seconds = 10;
@@ -44,6 +45,7 @@ export class UserAccountComponent {
         sex: this.user.sex ? this.user.sex : null,
         age: this.calcAge()
       };
+      this.loader = false;
     }, error => {
       this.userExist = false;
       setInterval(() => {
@@ -53,8 +55,8 @@ export class UserAccountComponent {
         }
       }, 1000);
     });
-
   }
+
 
 
 

@@ -5,7 +5,7 @@
       <div class="col-xs-12 col-md-6 offset-md-3">
         <div class="form">
           <div class="form-group">
-            <input class="form-control d-inline" formControlName="email" type="text" [placeholder]="'Email' | translate">
+            <input class="form-control d-inline"  formControlName="email" type="text" [placeholder]="'Email' | translate">
             <span *ngIf="emailField.errors && emailField.errors.required && (emailField.touched || submit)">{{"Email jest wymagany" | translate}}</span>
             <span *ngIf="emailField.errors && emailField.errors.email && (emailField.touched || submit)">{{"Wpisano niepoprawny adres email" | translate}}</span>
           </div>

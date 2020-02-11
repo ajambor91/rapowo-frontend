@@ -64,7 +64,6 @@ import { UserAccountComponent } from './components/user-account/user-account.com
     PasswordVerifyDialogComponent,
     DeleteUserInfoComponent,
     UserAccountComponent
-
   ],
   imports: [
     NgbDropdownModule,

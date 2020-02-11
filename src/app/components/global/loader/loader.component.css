@@ -1,0 +1,15 @@
+.background{
+  position: absolute;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+  background-color: #011214;
+}
+.loader{
+  text-align: center;
+}

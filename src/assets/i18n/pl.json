@@ -82,5 +82,12 @@
   "city": "Miejscowość",
   "male": "Facet",
   "female": "Laseczka",
-  "age": "Wiek"
+  "age": "Wiek",
+  "Dodaj tekst": "Dodaj tekst",
+  "Tytuł": "Tytuł",
+  "Tytuł jest wymagany":"Tytuł jest wymagany",
+  "Tekst": "Tekst",
+  "Tekst jest wymagany": "Tekst jest wymagany",
+  "Dodaj tekst!": "Dodaj tekst!"
+
 }
