@@ -15,6 +15,8 @@ import {OtherSettingsComponent} from './components/global/other-settings/other-s
 import {DeleteUserInfoComponent} from './components/delete-user-info/delete-user-info.component';
 import {MailingSettingsComponent} from './components/global/mailing-settings/mailing-settings.component';
 import {UserAccountComponent} from './components/user-account/user-account.component';
+import {UserProfileResolverService} from './services/resolvers/user-profile-resolver.service';
+import {UserSettingsResolverService} from './services/resolvers/user-settings-resolver.service';
 
 const routes: Routes = [
   { path: '', component: MainComponent},
@@ -29,12 +31,12 @@ const routes: Routes = [
   { path: 'reset-password-new/:hash', component: ResetPasswordSuccessComponent},
   { path: 'settings', component: SettingsComponent, children: [
       { path: '', redirectTo: 'edit-account', pathMatch: 'full'},
-      { path: 'edit-account', component: EditAccountComponent},
-      { path: 'notification-settings', component: MailingSettingsComponent},
-      { path: 'other-settings', component: OtherSettingsComponent}
+      { path: 'edit-account/:id', component: EditAccountComponent},
+      { path: 'notification-settings/:id', component: MailingSettingsComponent,resolve: {settings: UserSettingsResolverService}},
+      { path: 'other-settings/:id', component: OtherSettingsComponent}
     ]},
   { path: 'delete-user', component: DeleteUserInfoComponent},
-  { path: 'profile/:id', component: UserAccountComponent}
+  { path: 'profile/:id', component: UserAccountComponent, resolve: {user: UserProfileResolverService}}
 
 
 ];

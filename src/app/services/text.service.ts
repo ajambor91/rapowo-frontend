@@ -15,6 +15,6 @@ export class TextService {
     return this.http.get(`${API_CONFIG.api}/texts/get`);
   }
   addText(params: AddTextParams): Observable<AddTextReponse> {
-    return this.http.post<AddTextReponse>( `${API_CONFIG.api}/texts/add`, params);
+    return this.http.post<AddTextReponse>( `${API_CONFIG.api}/text/private/add-text`, params);
   }
 }

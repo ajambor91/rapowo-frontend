@@ -18,7 +18,7 @@
         <button ngbDropdownAnchor (click)="dropdownMenu.toggle()" class="navlink menu dropdown-toggle" data-toggle="dropdown">{{user.nick}}</button>
         <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right dropdown-menu__red">
           <a class="dropdown-item menu" [routerLink]="['profile',user.id]">{{ "Moje konto" | translate }}</a>
-          <a class="dropdown-item menu" [routerLink]="['settings','edit-account']">{{ "Ustawienia konta" | translate }}</a>
+          <a class="dropdown-item menu" [routerLink]="['settings','edit-account',user.id]">{{ "Ustawienia konta" | translate }}</a>
           <a class="dropdown-item menu" (click)="logout()">{{ "Wyloguj" | translate }}</a>
         </div>
       </div>

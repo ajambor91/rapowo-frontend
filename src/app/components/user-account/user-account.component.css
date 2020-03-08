@@ -3,3 +3,41 @@
   height: 250px;
   box-shadow: #c7141a 0 0 3px 4px;
 }
+
+img.avatar{
+  width: 200px;
+  height: auto;
+}
+.profile{
+  width: 100%;
+  position: relative;
+}
+.background-image{
+  width: 100%;
+  height: auto;
+}
+.user-data{
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  display: flex;
+}
+.v-bottom{
+  vertical-align: bottom;
+}
+.description{
+  position: relative;
+}
+.user-content-data{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.data-item{
+  text-shadow: #011214 0 4px 4px;
+  text-decoration: #011214;
+}
+.data-item p{
+  margin-left: 4px;
+}
+

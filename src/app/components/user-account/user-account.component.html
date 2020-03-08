@@ -1,35 +1,29 @@
 <div class="container mt__100">
-  <div *ngIf="!userExist; else userContainer">
-    <h2 class="text-center h2 mb-5">{{"Nie znaleziono użytkownika" | translate}}</h2>
-    <p class="mt__100 text-center">{{"Za" | translate}} {{seconds}} {{"zostaniesz przeniesiony na" |translate}} <a routerLink="/">{{"stronę główną" | translate}}</a></p>
-  </div>
-  <ng-template #userContainer>
-    <div class="row">
-      <div class="col-12">
-        <h2 *ngIf="user" class="h2 text-center mt__100 mb-5">{{user.nick}}</h2>
-      </div>
-    </div>
   <div class="row">
-    <div class="col-xs-12 col-md-4">
-      <div class="avatar">
-        <img class="rounded-circle shadowed" [src]="avatar">
+    <div *ngIf="!userExist; else userContainer">
+      <h2 class="text-center h2 mb-5">{{"Nie znaleziono użytkownika" | translate}}</h2>
+      <p class="mt__100 text-center">{{"Za" | translate}} {{seconds}} {{"zostaniesz przeniesiony na" |translate}} <a
+        routerLink="/">{{"stronę główną" | translate}}</a></p>
+    </div>
+    <ng-template #userContainer>
+      <div class="profile">
+        <img class="background-image" [src]="background">
+        <div class="user-data">
+          <div class="user-avatar block">
+            <img [src]="avatar" class="avatar">
+          </div>
+          <div class="description block">
+            <div class="user-content-data">
+              <div *ngFor="let item of objectKeys(personalData); let i = index"
+                   class="data-item d-flex justify-content-between col-xs-12 col-md-6">
+                <p>{{item | translate}} </p>
+                <p *ngIf="item !== 'sex'">{{personalData[item] }}</p>
+                <p *ngIf="item === 'sex'">{{personalData[item] | translate}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-md-8">
-
-    <div *ngIf="personalData" class="col-xs-12 col-md-12 row">
-      <div  *ngFor="let item of objectKeys(personalData); let i = index" class="d-flex justify-content-between col-xs-12 col-md-6">
-        <p>{{item | translate}}</p>
-        <p *ngIf="item !== 'sex'">{{personalData[item] }}</p>
-          <p *ngIf="item === 'sex'">{{personalData[item] | translate}}</p>
-      </div>
-    </div>
-    </div>
+    </ng-template>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <p *ngFor=""></p>
-    </div>
-  </div>
-  </ng-template>
 </div>

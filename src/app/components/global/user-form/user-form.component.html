@@ -1,6 +1,9 @@
 
   <form [formGroup]="registerForm" (ngSubmit)="sendFormFn()">
     <div class="row">
+      <div class="col-12">
+        <app-background-image (bckImage)="addBackgroundImage($event)"></app-background-image>
+      </div>
       <div class="col-md-6">
         <app-avatar (image)="addAvatar($event)"></app-avatar>
       </div>

@@ -8,6 +8,7 @@ import {ErrorModel} from '../../../model/helper/error-model';
 import {Birthdate} from '../../../model/helper/birthdate';
 import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
 import {CustomDatepickerI18n} from '../../../services/datepickeri18n';
+import {Background} from '../../../model/helper/Background';
 
 @Component({
   selector: 'app-user-form',
@@ -70,6 +71,15 @@ export class UserFormComponent implements OnInit{
     this.registerForm.get('avatar').get('moved').setValue(moved);
 
   }
+  set backgroundMoved(move: AvatarMove) {
+    this.registerForm.get('background').get('moved').setValue(move);
+  }
+  set backgroundSize(size: AvatarSize) {
+    this.registerForm.get('background').get('size').setValue(size);
+  }
+  set backgroundPath(path: string) {
+    this.registerForm.get('background').get('path').setValue(path);
+  }
   get getUserSex(): string {
     return this.registerForm.get('sex').value;
   }
@@ -82,6 +92,10 @@ export class UserFormComponent implements OnInit{
   set removedAvatar(removed: boolean){
     if(!this.registerForm.get('avatar').get('removed')) return;
     this.registerForm.get('avatar').get('removed').setValue(true);
+  }
+  set removedBackground(removed: boolean){
+    if(!this.registerForm.get('background').get('removed')) return;
+    this.registerForm.get('background').get('removed').setValue(true);
   }
   setObjectToBirthdate(){
     const birthdate = this.registerForm.get('birthdate');
@@ -126,7 +140,6 @@ export class UserFormComponent implements OnInit{
     this.registerForm.get('date').setValue(dateObject);
   }
   addAvatar(avatar: Avatar): void {
-    console.log(avatar);
     if(avatar.removed){
       this.removedAvatar = avatar.removed;
     }
@@ -143,6 +156,22 @@ export class UserFormComponent implements OnInit{
     this.avatarMoved = moved;
     this.avatarPath = path;
 
+  }
+  addBackgroundImage(image: Background): void {
+    if(image.removed){
+      this.removedBackground = image.removed;
+    }
+    const size: AvatarSize = {
+      sizeX: image.sizeX,
+      sizeY: image.sizeY
+    };
+    const moved: AvatarMove = {
+      moveX: image.moveX,
+      moveY: image.moveY
+    };
+    this.backgroundSize = size;
+    this.backgroundMoved = moved;
+    this.backgroundPath = image.path;
   }
   sendFormFn(): void{
     this.submit = true;

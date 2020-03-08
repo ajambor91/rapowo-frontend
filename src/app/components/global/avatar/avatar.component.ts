@@ -19,14 +19,14 @@ export class AvatarComponent implements OnInit {
   down = false;
   posX = 0;
   posY = 0;
-  imageSizeX = 250;
+  imageSizeX = 200;
   imageSizeY: number;
-  initialSizeX = 250;
+  initialSizeX = 200;
   initialSizeY: number;
   moveXDirection = 0;
   xMove: number;
   yMove: number;
-  avatarCircleSize = 250;
+  avatarCircleSize = 200;
   imagePath: string;
   invalidImageType: boolean;
   invalidImageSize: boolean;
@@ -61,7 +61,7 @@ export class AvatarComponent implements OnInit {
       const imageFile = new Image();
       imageFile.src = path;
       imageFile.onload = () => {
-        const factor = imageFile.width / 250;
+        const factor = imageFile.width / 200;
         this.imageSizeY = imageFile.height / factor;
         this.initialSizeY = this.imageSizeY;
       };
@@ -108,12 +108,12 @@ export class AvatarComponent implements OnInit {
       image.onload = () => {
         const width = image.width;
         const height = image.height;
-        this.imageSizeX = 250;
-        this.initialSizeX = 250;
+        this.imageSizeX = 200;
+        this.initialSizeX = 200;
         const imageSizeFactor = width / this.imageSizeX;
         this.imageSizeY = height / imageSizeFactor;
         this.initialSizeY = this.imageSizeY;
-        if (height < 250 || width < 250 || this.initialSizeY < 250 || this.initialSizeX < 250) {
+        if (height < 200 || width < 200 || this.initialSizeY < 200 || this.initialSizeX < 200) {
           this.invalidImageSize = true;
           this.imagePath = null;
           this.removed = true;
@@ -178,7 +178,6 @@ export class AvatarComponent implements OnInit {
     this.emitAvatar();
   }
   emitAvatar(): void {
-    console.log(this.removed);
     const avatar: Avatar = {
       sizeX: this.imageSizeX ,
       sizeY: this.imageSizeY,
@@ -190,3 +189,4 @@ export class AvatarComponent implements OnInit {
     this.image.emit(avatar);
   }
 }
+

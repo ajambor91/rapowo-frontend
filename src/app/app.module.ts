@@ -37,6 +37,9 @@ import { OtherSettingsComponent } from './components/global/other-settings/other
 import { PasswordVerifyDialogComponent } from './components/global/password-verify-dialog/password-verify-dialog.component';
 import { DeleteUserInfoComponent } from './components/delete-user-info/delete-user-info.component';
 import { UserAccountComponent } from './components/user-account/user-account.component';
+import { BackgroundImageComponent } from './components/global/background-image/background-image.component';
+import {UserProfileResolverService} from './services/resolvers/user-profile-resolver.service';
+import {UserSettingsResolverService} from './services/resolvers/user-settings-resolver.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,8 @@ import { UserAccountComponent } from './components/user-account/user-account.com
     OtherSettingsComponent,
     PasswordVerifyDialogComponent,
     DeleteUserInfoComponent,
-    UserAccountComponent
+    UserAccountComponent,
+    BackgroundImageComponent
   ],
   imports: [
     NgbDropdownModule,
@@ -84,7 +88,7 @@ import { UserAccountComponent } from './components/user-account/user-account.com
     FormsModule,
     MatTabsModule
   ],
-  providers: [ PasswordValidator, AsyncValidator, [{provide: NgbDateParserFormatter, useClass: NgbDateFormatterCustom},{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorim, multi: true},{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}]],
+  providers: [ UserSettingsResolverService, UserProfileResolverService, PasswordValidator, AsyncValidator, [{provide: NgbDateParserFormatter, useClass: NgbDateFormatterCustom},{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorim, multi: true},{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}]],
   bootstrap: [AppComponent],
   entryComponents: [
     NotificationDialogComponent,

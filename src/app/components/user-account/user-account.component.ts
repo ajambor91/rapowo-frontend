@@ -9,11 +9,11 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./user-account.component.css']
 })
 export class UserAccountComponent {
-  loader = true;
   user: User;
   userExist = true;
   seconds = 10;
   avatar = 'http://rapowo-backend.local/';
+  background = this.avatar;
   personalData;
   objectKeys = Object.keys;
   calcAge(): number | null {
@@ -30,23 +30,22 @@ export class UserAccountComponent {
     }
     return countedAge;
   }
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
-    let userId;
-    this.route.paramMap.subscribe(resp => {
-      userId = resp.get('id');
-    });
-    this.userService.getUserById(userId).subscribe( resp => {
-      this.user = resp.data;
-      this.avatar += this.user.avatar;
+  constructor(private activatedRoute: ActivatedRoute, private route: ActivatedRoute, private router: Router) {
+    const resp = this.activatedRoute.snapshot.data['user'];
+    if(resp.status){
       this.userExist = true;
+      this.user = resp.data;
+      this.avatar += resp.data.avatar;
+      this.background += resp.data.background;
+      console.log(resp.data);
       this.personalData = {
         name: this.user.name ? this.user.name : null,
         city: this.user.city ? this.user.city : null,
         sex: this.user.sex ? this.user.sex : null,
         age: this.calcAge()
       };
-      this.loader = false;
-    }, error => {
+    }
+    else {
       this.userExist = false;
       setInterval(() => {
         this.seconds --;
@@ -54,7 +53,7 @@ export class UserAccountComponent {
           this.router.navigate(['/']);
         }
       }, 1000);
-    });
+    }
   }
 
 

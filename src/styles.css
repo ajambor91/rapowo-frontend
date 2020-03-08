@@ -153,5 +153,42 @@ div:focus{
 .container{
   position: relative;
 }
-
+.avatar-label{
+  margin: auto;
+  width: 300px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c7141a;
+  color: #FFF;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: -25px;
+  z-index: 2;
+  box-shadow: #fff 0 0 3px 2px;
+  transition: color .5s;
+}
+.avatar-label:hover{
+  color: #011214;
+  transition: color .5s;
+}
+input[type="file"]{
+  opacity: 0;
+  z-index: 1;
+}
+.avatar{
+  border-radius: 50%;
+  margin: auto;
+  height: 200px;
+  width: 200px;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  text-align: center;
+  box-shadow: #c7141a 0 0 3px 4px;
+  line-height: 200px;
+  cursor: pointer;
+  transition: box-shadow .5s;
+}
 

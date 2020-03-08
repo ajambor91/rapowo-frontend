@@ -1,0 +1,8 @@
+<div  (drop)="getDroppedImage($event)" (click)="clickImage($event)" #backgroundImage (mousemove)="moveImage($event)" class="col-12 text-center image-container" [ngStyle]="{'background-image': 'url(' + path +')', 'background-position-y': posY +'px'}">
+  <span *ngIf="!imageLoaded && !imageTooThin">Przeciągnij obrazek tutaj</span>
+  <span *ngIf="!imageLoaded && imageTooThin">{{"Obrazek powinien mieć conajmniej 1000 x 300 px" | translate}}</span>
+</div>
+<div class="form-group my-5">
+  <input (change)="getInputFile($event)" type="file" class="avatar-label" id="select-bck">
+  <label class="avatar-label" for="select-bck">{{"Wybierz obrazek" | translate}}</label>
+</div>

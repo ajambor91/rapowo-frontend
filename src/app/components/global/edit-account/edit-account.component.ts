@@ -41,7 +41,19 @@ export class EditAccountComponent {
         moveX: [0],
         moveY: [0]
       }),
-      removed: [false]
+      removed: [false],
+    }),
+    background: this.formBuilder.group({
+      path: [''],
+      size: this.formBuilder.group({
+        sizeX: [0],
+        sizeY: [0]
+      }),
+      moved: this.formBuilder.group({
+        moveX: [0],
+        moveY: [0]
+      }),
+      removed: [false],
     }),
     name: [this.user.name || '', [Validators.pattern(/^[a-zA-Z0-9]/)]],
     city: [this.user.city || '', [Validators.pattern(/^[a-zA-Z]/)]],

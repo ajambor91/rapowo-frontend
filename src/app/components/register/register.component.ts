@@ -46,6 +46,17 @@ export class RegisterComponent{
         moveX: [''],
         moveY: ['']
       })
+    }),
+    background: this.formBuilder.group({
+      path: [''],
+      moved: this.formBuilder.group({
+        moveY: [''],
+        moveX: ['']
+      }),
+      size: this.formBuilder.group({
+        sizeX: [''],
+        sizeY: ['']
+      })
     })
   });
   openRule(){
