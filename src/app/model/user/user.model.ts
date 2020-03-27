@@ -1,5 +1,6 @@
 import {Avatar} from '../helper/avatar';
 import {Background} from '../helper/Background';
+import {UserAdditionalData} from './user-additional-data';
 
 export interface User {
   id: number;
@@ -13,4 +14,6 @@ export interface User {
   sex?: string;
   avatar?: Avatar;
   background?: Background;
+  additional: UserAdditionalData;
+  preparedBackground?: object;
 }

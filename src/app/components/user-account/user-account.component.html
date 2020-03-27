@@ -1,13 +1,14 @@
 <div class="container mt__100">
-  <div class="row">
-    <div *ngIf="!userExist; else userContainer">
+    <div class="row" *ngIf="!userExist; else userContainer">
       <h2 class="text-center h2 mb-5">{{"Nie znaleziono użytkownika" | translate}}</h2>
       <p class="mt__100 text-center">{{"Za" | translate}} {{seconds}} {{"zostaniesz przeniesiony na" |translate}} <a
         routerLink="/">{{"stronę główną" | translate}}</a></p>
     </div>
-    <ng-template #userContainer>
-      <div class="profile">
-        <img class="background-image" [src]="background">
+  <ng-template #userContainer>
+    <div class="song-border row">
+    <div class="p-0 col-12">
+      <div class="profile col-12" [ngStyle]="user.preparedBackground">
+        <h2 class="h2 data-item profile-header" >{{user.nick}}</h2>
         <div class="user-data">
           <div class="user-avatar block">
             <img [src]="avatar" class="avatar">
@@ -23,7 +24,27 @@
             </div>
           </div>
         </div>
+        <div class="buttons">
+          <button class="rapowo__btn small-button">{{"Obserwuj" | translate}}</button>
+        </div>
       </div>
-    </ng-template>
-  </div>
+    </div>
+    <div *ngIf="showInfo" [@showAdditionalInfo] class="col-12 row slide-info">
+      <div class="col-4 pt-3" *ngFor="let item of additional(user.additional); let i = index">
+          <p>{{item | translate}}: {{user.additional[item]}}</p>
+      </div>
+    </div>
+    <div class="row col-12 my-3">
+      <button class="m-auto" (click)="showInfo = !showInfo">show</button>
+    </div>
+    <div *ngFor="let song of songs" class="row col-12 mt__100">
+      <div class="col-sm-12 offset-md-1 col-md-10 mb-3">
+        <h3 class="h3 text-center">{{song.title}}</h3>
+      </div>
+      <div class="col-sm-12 offset-md-1 col-md-10 text-content">
+        <pre>{{song.content}}</pre>
+      </div>
+    </div>
+    </div>
+  </ng-template>
 </div>

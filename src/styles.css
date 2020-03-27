@@ -181,14 +181,48 @@ input[type="file"]{
 .avatar{
   border-radius: 50%;
   margin: auto;
-  height: 200px;
-  width: 200px;
+  height: 175px;
+  width: 175px;
   background-repeat: no-repeat;
   vertical-align: middle;
   text-align: center;
   box-shadow: #c7141a 0 0 3px 4px;
-  line-height: 200px;
+  line-height: 175px;
   cursor: pointer;
   transition: box-shadow .5s;
 }
+.text-content{
+  color: #fff;
+}
+pre{
+  color: #fff;
+}
+.buttons{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+.small-button{
+  font-size: 0.8em;
+  width: auto;
+  height: auto;
+  padding: 7px 15px 7px 15px;
 
+}
+.song-border{
+  border-radius: 15px;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 2px;
+  padding: 0;
+  overflow: hidden;
+
+}
+.profile{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.profile-header{
+  width: 100%;
+  padding: 20px 0 0 10px;
+}

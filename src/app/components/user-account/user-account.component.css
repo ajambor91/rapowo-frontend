@@ -1,16 +1,14 @@
-.shadowed{
-  width: 250px;
-  height: 250px;
-  box-shadow: #c7141a 0 0 3px 4px;
-}
+
 
 img.avatar{
-  width: 200px;
+  width: 175px;
   height: auto;
+  margin-bottom: 10px;
 }
 .profile{
   width: 100%;
   position: relative;
+  height: 310px;
 }
 .background-image{
   width: 100%;
@@ -18,7 +16,7 @@ img.avatar{
 }
 .user-data{
   position: absolute;
-  left: 10px;
+  left: 20px;
   bottom: 10px;
   display: flex;
 }
@@ -41,3 +39,7 @@ img.avatar{
   margin-left: 4px;
 }
 
+
+.slide-info{
+  overflow: hidden;
+}

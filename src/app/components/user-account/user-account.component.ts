@@ -2,20 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../model/user/user.model';
 import {UserService} from '../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {SongData} from '../../model/song/song-data.model';
+import {TextService} from '../../services/text.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {API_CONFIG} from '../../config/config.module';
+import {Helpers} from '../../helpers/helpers';
 
 @Component({
   selector: 'app-user-account',
   templateUrl: './user-account.component.html',
-  styleUrls: ['./user-account.component.css']
+  styleUrls: ['./user-account.component.css'],
+  animations: [
+    trigger('showAdditionalInfo',[
+      transition(':enter', [
+        style({height: '0px'}),
+        animate('200ms ease-in', style({height: '100px'}))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({height: '0px'}))
+      ])
+    ])
+  ]
 })
-export class UserAccountComponent {
+export class UserAccountComponent implements OnInit{
+  avatar: string;
+  songs: Array<SongData>;
   user: User;
   userExist = true;
   seconds = 10;
-  avatar = 'http://rapowo-backend.local/';
-  background = this.avatar;
+  resources = API_CONFIG.api;
   personalData;
   objectKeys = Object.keys;
+  additional = Object.keys;
+  showInfo = false;
   calcAge(): number | null {
     const today = new Date();
     const todayTimestamp = today.getTime() / 1000;
@@ -30,14 +49,16 @@ export class UserAccountComponent {
     }
     return countedAge;
   }
-  constructor(private activatedRoute: ActivatedRoute, private route: ActivatedRoute, private router: Router) {
+  constructor(private helpers: Helpers, private textService: TextService,private activatedRoute: ActivatedRoute, private route: ActivatedRoute, private router: Router) {
     const resp = this.activatedRoute.snapshot.data['user'];
     if(resp.status){
       this.userExist = true;
       this.user = resp.data;
-      this.avatar += resp.data.avatar;
-      this.background += resp.data.background;
-      console.log(resp.data);
+      console.log(resp.data.avatar)
+      this.avatar = this.resources + '/' + resp.data.avatar;
+      this.user.preparedBackground = this.helpers.prepareImages(resp.data.background);
+
+      console.log(this.user.preparedBackground);
       this.personalData = {
         name: this.user.name ? this.user.name : null,
         city: this.user.city ? this.user.city : null,
@@ -55,9 +76,14 @@ export class UserAccountComponent {
       }, 1000);
     }
   }
-
-
-
+  ngOnInit(): void {
+    const page = 1;
+    this.textService.getTextByUserId(this.user.id, page).subscribe(resp=>{
+      if(resp.status){
+        this.songs = resp.data;
+      }
+    });
+  }
 
 
 }

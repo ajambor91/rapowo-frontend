@@ -40,6 +40,7 @@ import { UserAccountComponent } from './components/user-account/user-account.com
 import { BackgroundImageComponent } from './components/global/background-image/background-image.component';
 import {UserProfileResolverService} from './services/resolvers/user-profile-resolver.service';
 import {UserSettingsResolverService} from './services/resolvers/user-settings-resolver.service';
+import {Helpers} from './helpers/helpers';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,7 @@ import {UserSettingsResolverService} from './services/resolvers/user-settings-re
     FormsModule,
     MatTabsModule
   ],
-  providers: [ UserSettingsResolverService, UserProfileResolverService, PasswordValidator, AsyncValidator, [{provide: NgbDateParserFormatter, useClass: NgbDateFormatterCustom},{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorim, multi: true},{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}]],
+  providers: [Helpers, UserSettingsResolverService, UserProfileResolverService, PasswordValidator, AsyncValidator, [{provide: NgbDateParserFormatter, useClass: NgbDateFormatterCustom},{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorim, multi: true},{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}]],
   bootstrap: [AppComponent],
   entryComponents: [
     NotificationDialogComponent,

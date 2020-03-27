@@ -1,22 +1,23 @@
+<a href="https://rapowo-backend-local.com/social/google-login">Test</a>
 <div class="container mt__100">
   <h2 class="h1 text-center mb-5">Teksty</h2>
-  <div class="row mb-5" *ngFor="let text of texts">
-    <div class="offset-lg-1 col-lg-3 col-xs-12 p-3 author__content border">
-      <div class="m-auto text-center">
-        <img class="rounded-circle avatar" src="https://via.placeholder.com/200C">
+  <div class="offset-md-1 col-md-10 col-xs-12  mb-5 song-border" *ngFor="let text of songs">
+      <div class="col-12 song-header w-100 position-relative profile" [ngStyle]="text.user.preparedBackground">
+        <h2 class="h2 data-item profile-header">{{text.user.nick}}</h2>
+
+        <div class="author-container">
+          <img class="rounded-circle avatar thumbnail" [src]="resources + '/' + text.user.avatar.path">
+        </div>
+        <div class="buttons">
+          <button class="rapowo__btn small-button">{{"Obserwuj" | translate}}</button>
+        </div>
       </div>
-        <p class="author author__nick">{{text.author.nick}}</p>
-        <p class="author author__sex">{{text.author.sex}}</p>
-        <p class="author author__ratings">{{text.author.rating}}</p>
-
-
-    </div>
-    <div class="col-lg-7 col-xs-12 p-3 border position-relative">
+    <div class="col-12 position-relative translucent p-5">
       <h3 class="h2 text-center">{{text.title}}</h3>
 
       <p class="text__song">{{text.content}}</p>
       <div class="row position-absolute fixed-bottom">
-        <div class="col-12 text-center">
+        <div class="col-12 my-5 text-center">
           <button class="btn rapowo__btn" (click)="getOneText(text.id)">Czytaj więcej!</button>
         </div>
       </div>

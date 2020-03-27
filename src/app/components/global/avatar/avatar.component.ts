@@ -19,14 +19,14 @@ export class AvatarComponent implements OnInit {
   down = false;
   posX = 0;
   posY = 0;
-  imageSizeX = 200;
+  imageSizeX = 175;
   imageSizeY: number;
-  initialSizeX = 200;
+  initialSizeX = 175;
   initialSizeY: number;
   moveXDirection = 0;
   xMove: number;
   yMove: number;
-  avatarCircleSize = 200;
+  avatarCircleSize = 175;
   imagePath: string;
   invalidImageType: boolean;
   invalidImageSize: boolean;
@@ -61,7 +61,7 @@ export class AvatarComponent implements OnInit {
       const imageFile = new Image();
       imageFile.src = path;
       imageFile.onload = () => {
-        const factor = imageFile.width / 200;
+        const factor = imageFile.width / 175;
         this.imageSizeY = imageFile.height / factor;
         this.initialSizeY = this.imageSizeY;
       };
@@ -108,12 +108,12 @@ export class AvatarComponent implements OnInit {
       image.onload = () => {
         const width = image.width;
         const height = image.height;
-        this.imageSizeX = 200;
-        this.initialSizeX = 200;
+        this.imageSizeX = 175;
+        this.initialSizeX = 175;
         const imageSizeFactor = width / this.imageSizeX;
         this.imageSizeY = height / imageSizeFactor;
         this.initialSizeY = this.imageSizeY;
-        if (height < 200 || width < 200 || this.initialSizeY < 200 || this.initialSizeX < 200) {
+        if (height < 175 || width < 175 || this.initialSizeY < 175 || this.initialSizeX < 175) {
           this.invalidImageSize = true;
           this.imagePath = null;
           this.removed = true;
