@@ -25,9 +25,16 @@ p.rapowo-link:first-of-type{
   box-shadow: #fff 0 0 3px 2px;
   transition: color .5s;
 }
+.login{
+  border-radius: .25rem .25rem 0 0;
+}
 .gmail-login{
   background-color: #B23121;
+  border-radius: 0;
+  border-bottom-right-radius: .25rem;
 }
 .fb-login{
   background-color: #3B5998;
+  border-radius: 0;
+  border-bottom-left-radius: .25rem;
 }

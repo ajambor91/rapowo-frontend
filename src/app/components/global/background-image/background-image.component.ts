@@ -25,7 +25,7 @@ export class BackgroundImageComponent implements OnInit{
   imageHeight = 0;
   constructor(private authService: AuthService, private avatarService: AvatarService) {
     const user: User = this.authService.currentUserValue;
-    if(user && user.avatar && user.avatar.path !== ''){
+    if(user && user.background && user.background.path !== ''){
       this.imageLoaded = true;
       this.avatarService.getAvatar(user.background.path).subscribe(blob => {
         this.showImage(blob);

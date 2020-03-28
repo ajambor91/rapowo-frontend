@@ -46,6 +46,8 @@ import {socialFactory} from './config/config.module';
 import {AuthService as SocialService} from 'angularx-social-login';
 import {AuthService as AuthService} from './services/auth-service';
 import { GetSocialNickComponent } from './components/global/get-social-nick/get-social-nick.component';
+import { DataExistComponent } from './components/data-exist/data-exist.component';
+import { FacebookPageComponent } from './components/global/facebook-page/facebook-page.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { GetSocialNickComponent } from './components/global/get-social-nick/get-
     DeleteUserInfoComponent,
     UserAccountComponent,
     BackgroundImageComponent,
-    GetSocialNickComponent
+    GetSocialNickComponent,
+    DataExistComponent,
+    FacebookPageComponent
   ],
   imports: [
     NgbDropdownModule,

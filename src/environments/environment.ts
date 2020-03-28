@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'http://rapowo-backend.local',
+  api: 'https://rapowo-backend-local.com',
   facebook: {
     appSecret: '6d10023273d3578dd8606894fd472916',
     appId: '207340183833015'

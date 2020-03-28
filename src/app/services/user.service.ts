@@ -19,7 +19,7 @@ import {SettingsParams} from '../model/user/settings-params';
 import {SettingsResponse} from '../model/user/settings-response';
 import {LoginParams} from '../model/user/login-params';
 import {LoginResponse} from '../model/user/login-response';
-
+import {AddNick} from '../model/user/add-nick';
 
 
 @Injectable({ providedIn: 'root' })
@@ -66,8 +66,8 @@ export class UserService {
   getUserById(id: number): Observable<LoginResponse> {
     return this.http.get<LoginResponse>(`${API_CONFIG.api}/user/get/${id}`);
   }
-  getUserBySocialId(id: string, type: string): Observable<LoginResponse> {
-    return  this.http.get<LoginResponse>(`${API_CONFIG.api}/user/social/${id}/${type}`)
+  addNick(id: number, data: AddNick): Observable<LoginResponse> {
+    return this.http.put<LoginResponse>(`${API_CONFIG.api}/social/add-nick/${id}`, data);
   }
 
 }

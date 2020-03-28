@@ -4,8 +4,8 @@ import {UserAdditionalData} from './user-additional-data';
 
 export interface User {
   id: number;
-  nick: string;
-  email: string;
+  nick?: string;
+  email?: string;
   token: string;
   name?: string;
   birthdate?: string;

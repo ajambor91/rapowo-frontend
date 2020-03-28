@@ -7,13 +7,15 @@ import {LoginResponse} from '../model/user/login-response';
 import {API_CONFIG} from '../config/config.module';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {RegisterParams} from '../model/user/register-params';
+import {AuthService as SocialService} from 'angularx-social-login';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
   @Output() emitter = new EventEmitter<any>();
   public currentUser: Observable<User>;
   private currentUserSubject: BehaviorSubject<User>;
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private socialService: SocialService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -35,11 +37,25 @@ export class AuthService {
         }
       }));
   }
+  loginSocialUser(user: RegisterParams) {
+    return  this.http.post<LoginResponse>(`${API_CONFIG.api}/social/login`, user)
+      .pipe(map( user => {
+        if (user.status === true) {
+          localStorage.setItem('user', JSON.stringify(user.data));
+          this.emitter.emit(user.data);
+          this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+          return user.data;
+        }
+      }));
+  }
   logout(){
+
+    this.socialService.signOut(false);
     localStorage.removeItem('user');
     this.currentUserSubject.next(null);
     this.router.navigate(['/']);
     this.emitter.emit(null);
+
   }
   getUser(){
     return this.emitter;

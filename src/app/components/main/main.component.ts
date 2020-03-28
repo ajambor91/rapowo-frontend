@@ -32,7 +32,7 @@ export class MainComponent implements OnInit{
     this.api.getTexts().subscribe(resp =>{
       this.texts = resp;
       this.songs = resp.data;
-      for(let i = 0; i <= this.songs.length; i++){
+      for(let i = 0; i <= this.songs.length - 1; i++){
         this.songs[i].user.preparedBackground = this.helpers.prepareImages(this.songs[i].user.background.path);
       }
       this.additionalData = resp.additional_data;
