@@ -4,7 +4,15 @@
 
 export const environment = {
   production: false,
-  api:'http://rapowo-backend.local'
+  api: 'http://rapowo-backend.local',
+  facebook: {
+    appSecret: '6d10023273d3578dd8606894fd472916',
+    appId: '207340183833015'
+  },
+  google: {
+    appSecret: 'cTHYQclwRiCV9xsFJLzoCjui',
+    appId: '621712303434-1lpfqqonqfa77d495n6eenf09opflbsj.apps.googleusercontent.com'
+  }
 };
 
 /*

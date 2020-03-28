@@ -1,5 +1,6 @@
 import { NgModule, InjectionToken } from '@angular/core';
 import { environment } from '../../environments/environment';
+import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider} from 'angularx-social-login';
 
 export let CONFIG = new InjectionToken<Config>('app.config');
 
@@ -18,3 +19,16 @@ export const API_CONFIG: Config = {
   }]
 })
 export class ConfigModule { }
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(environment.google.appId)
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider(environment.facebook.appId)
+  }
+]);
+export function socialFactory() {
+  return config;
+}

@@ -6,4 +6,6 @@ export interface RegisterParams {
   city?: string;
   birthdate?: string;
   sex?: boolean;
+  socialId?: string;
+  type?: string;
 }

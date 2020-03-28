@@ -41,6 +41,11 @@ import { BackgroundImageComponent } from './components/global/background-image/b
 import {UserProfileResolverService} from './services/resolvers/user-profile-resolver.service';
 import {UserSettingsResolverService} from './services/resolvers/user-settings-resolver.service';
 import {Helpers} from './helpers/helpers';
+import {AuthServiceConfig} from 'angularx-social-login';
+import {socialFactory} from './config/config.module';
+import {AuthService as SocialService} from 'angularx-social-login';
+import {AuthService as AuthService} from './services/auth-service';
+import { GetSocialNickComponent } from './components/global/get-social-nick/get-social-nick.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +73,8 @@ import {Helpers} from './helpers/helpers';
     PasswordVerifyDialogComponent,
     DeleteUserInfoComponent,
     UserAccountComponent,
-    BackgroundImageComponent
+    BackgroundImageComponent,
+    GetSocialNickComponent
   ],
   imports: [
     NgbDropdownModule,
@@ -89,12 +95,13 @@ import {Helpers} from './helpers/helpers';
     FormsModule,
     MatTabsModule
   ],
-  providers: [Helpers, UserSettingsResolverService, UserProfileResolverService, PasswordValidator, AsyncValidator, [{provide: NgbDateParserFormatter, useClass: NgbDateFormatterCustom},{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorim, multi: true},{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}]],
+  providers: [AuthService, SocialService, { provide: AuthServiceConfig, useFactory: socialFactory }, Helpers, UserSettingsResolverService, UserProfileResolverService, PasswordValidator, AsyncValidator, [{provide: NgbDateParserFormatter, useClass: NgbDateFormatterCustom},{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorim, multi: true},{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}]],
   bootstrap: [AppComponent],
   entryComponents: [
     NotificationDialogComponent,
     RulesComponent,
-    PasswordVerifyDialogComponent
+    PasswordVerifyDialogComponent,
+    GetSocialNickComponent
   ]
 })
 export class AppModule { }

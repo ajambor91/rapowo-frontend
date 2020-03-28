@@ -66,5 +66,8 @@ export class UserService {
   getUserById(id: number): Observable<LoginResponse> {
     return this.http.get<LoginResponse>(`${API_CONFIG.api}/user/get/${id}`);
   }
+  getUserBySocialId(id: string, type: string): Observable<LoginResponse> {
+    return  this.http.get<LoginResponse>(`${API_CONFIG.api}/user/social/${id}/${type}`)
+  }
 
 }

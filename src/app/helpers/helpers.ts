@@ -8,4 +8,5 @@ export class Helpers {
       return {backgroundImage : `url(${API_CONFIG.api}/${path})`};
     }
   }
+
 }

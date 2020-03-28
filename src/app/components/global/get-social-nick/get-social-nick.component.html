@@ -1,0 +1,9 @@
+<div>
+  <span class="text-center">{{"Musisz podać nam swój nick" |translate}}</span>
+  <div class="form-group mt-1">
+    <input [placeholder]="'Nick' | translate" class="form-control" [(ngModel)]="nick" type="text" >
+  </div>
+  <div class="w-100">
+    <button [disabled]="!nick" class='rapowo__btn-black btn w-100'(click)="verifyDeleting()">{{"Rejestruj!" | translate}}</button>
+  </div>
+</div>

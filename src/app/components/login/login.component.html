@@ -15,6 +15,14 @@
           </div>
           <div class="form-group text-center">
             <button role="button" class="rapowo__btn btn"><span class="button-content" *ngIf="!submitted; else spinner">{{ "Zaloguj się!" | translate }}</span><ng-template #spinner><img class="button-content button-loader" src="assets/loaders/button_loader.gif"></ng-template></button>
+            <div class="row social-buttons d-flex m-auto p-0">
+              <div class="col-sm-12 col-md-6 p-0">
+                <button type="button" (click)="fbLogin()" class="fb-login">FB</button>
+              </div>
+              <div class="col-sm-12 col-md-6 p-0">
+                <button type="button" (click)="gmailLogin()" class="gmail-login">Gmail</button>
+              </div>
+            </div>
             <div class="col-12 text-center">
               <p class="rapowo-link">{{ "Nie masz konta?" | translate }}  <a routerLink="/registry" role="button" class="rapowo-link">{{ "Zarejestruj się!" | translate }}</a></p>
               <p class="rapowo-link"><a routerLink="/reset-password" role="button" class="rapowo-link">{{ "Zapomniwałeś hasła?" | translate }}</a> </p>
