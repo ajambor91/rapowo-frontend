@@ -90,6 +90,7 @@ export class RegisterComponent{
     this.api.registerUser(this.registerForm.value).subscribe(response => {
       if(response.status){
         this.router.navigate(['registry-success']);
+        return;
       }
     },
       error => {

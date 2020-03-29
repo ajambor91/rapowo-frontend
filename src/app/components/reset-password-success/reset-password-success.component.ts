@@ -68,6 +68,7 @@ export class ResetPasswordSuccessComponent {
       });
       this.matDialog.afterAllClosed.subscribe(resp=>{
         this.router.navigate(['/login']);
+        return;
       });
     }, error => {
       this.matDialog.open(NotificationDialogComponent, {

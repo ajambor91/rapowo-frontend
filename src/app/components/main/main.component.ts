@@ -19,6 +19,7 @@ import {Helpers} from '../../helpers/helpers';
 })
 export class MainComponent implements OnInit{
   title = 'rapowo';
+
   constructor(private http: HttpClient, private api: TextService, private helpers: Helpers) {}
   texts: SongResponse;
   songs: Array<SongData>;

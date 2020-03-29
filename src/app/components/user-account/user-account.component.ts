@@ -72,6 +72,7 @@ export class UserAccountComponent implements OnInit{
         this.seconds --;
         if (this.seconds === 0 ) {
           this.router.navigate(['/']);
+          return;
         }
       }, 1000);
     }

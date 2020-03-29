@@ -17,10 +17,10 @@
             <button role="button" class="rapowo__btn btn login"><span class="button-content" *ngIf="!submitted; else spinner">{{ "Zaloguj się!" | translate }}</span><ng-template #spinner><img class="button-content button-loader" src="assets/loaders/button_loader.gif"></ng-template></button>
             <div class="row social-buttons d-flex m-auto p-0">
               <div class="col-sm-12 col-md-6 p-0">
-                <button type="button" (click)="fbLogin()" class="btn fb-login">FB</button>
+                <button type="button" (click)="fbLogin()" class="btn fb-login"><span *ngIf="!submittedFb; else fb"class="button-content">FB</span><ng-template #fb><img class="button-content button-loader" src="assets/loaders/button_loader.gif"></ng-template></button>
               </div>
               <div class="col-sm-12 col-md-6 p-0">
-                <button type="button" (click)="gmailLogin()" class="btn gmail-login">Gmail</button>
+                <button type="button" (click)="gmailLogin()" class="btn gmail-login"><span *ngIf="!submittedGoogle; else google" class="button-content">Google</span><ng-template #google><img class="button-content button-loader" src="assets/loaders/button_loader.gif"></ng-template></button>
               </div>
             </div>
             <div class="col-12 text-center">

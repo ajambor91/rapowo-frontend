@@ -35,9 +35,11 @@ body
   transition: color .5s;
 
 }
-btn:focus {
+.btn:focus , .btn.focus{
+  outline: 0;
   box-shadow: #fff 0 0 3px 2px;
 }
+
 .rapowo__btn:hover{
   color: #011214;
   transition: color .5s;
@@ -146,6 +148,7 @@ div:focus{
   color: #fff;
   box-shadow: #fff 0 0 4px 3px;
   display: inline-block;
+  outline: none;
 }
 .rapowo__btn-black:hover{
   box-shadow: #fff 0 0 4px 3px;

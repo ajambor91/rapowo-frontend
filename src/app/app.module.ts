@@ -48,6 +48,7 @@ import {AuthService as AuthService} from './services/auth-service';
 import { GetSocialNickComponent } from './components/global/get-social-nick/get-social-nick.component';
 import { DataExistComponent } from './components/data-exist/data-exist.component';
 import { FacebookPageComponent } from './components/global/facebook-page/facebook-page.component';
+import { AskDeleteComponent } from './components/global/ask-delete/ask-delete.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { FacebookPageComponent } from './components/global/facebook-page/faceboo
     BackgroundImageComponent,
     GetSocialNickComponent,
     DataExistComponent,
-    FacebookPageComponent
+    FacebookPageComponent,
+    AskDeleteComponent
   ],
   imports: [
     NgbDropdownModule,
@@ -105,7 +107,8 @@ import { FacebookPageComponent } from './components/global/facebook-page/faceboo
     NotificationDialogComponent,
     RulesComponent,
     PasswordVerifyDialogComponent,
-    GetSocialNickComponent
+    GetSocialNickComponent,
+    AskDeleteComponent
   ]
 })
 export class AppModule { }

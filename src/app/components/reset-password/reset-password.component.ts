@@ -36,6 +36,7 @@ export class ResetPasswordComponent {
     this.userService.resetPassword(this.resetPasswordForm.value).subscribe(
       resp => {
         this.router.navigate(['/reset-password-info']);
+        return;
       },
       error => {
         this.matDialog.open(NotificationDialogComponent,{

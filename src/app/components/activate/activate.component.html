@@ -1,12 +1,12 @@
 <div class="container mt__100">
   <div *ngIf="activate; else notFound">
     <h2  class="h2 text-center mb-5">{{ "Konto zostało aktywowane" | translate}}</h2>
-    <p class="text-center mt__100">{{ "Zostaniesz przeniesiony do strony" | translate }} <a routerLink="/login">{{ "logowania" | translate }}</a> {{ "za" | translate }} {{seconds}} {{ "sekund" | translate}}}</p>
+    <p class="text-center mt__50">{{ "Zostaniesz przeniesiony do strony" | translate }} <a routerLink="/login">{{ "logowania" | translate }}</a> {{ "za" | translate }} {{seconds}} {{ "sekund" | translate}}}</p>
   </div>
   <ng-template #notFound>
     <div>
       <h2  class="mb-5 h2 text-center">{{ "Nie znaleziono użytkownika, bądź konto jest już aktywne" | translate }}</h2>
-      <p class="text-center mt__100">{{ "Za" | translate}} {{seconds}} {{ "sekund zostaniesz przeniesiony na" | translate }} <a routerLink="/">{{ "stronę główną" | translate}}</a></p>
+      <p class="text-center mt__50">{{ "Za" | translate}} {{seconds}} {{ "sekund zostaniesz przeniesiony na" | translate }} <a routerLink="/">{{ "stronę główną" | translate}}</a></p>
     </div>
   </ng-template>
 </div>

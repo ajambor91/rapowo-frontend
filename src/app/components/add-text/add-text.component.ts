@@ -48,6 +48,7 @@ export class AddTextComponent {
     }
     this.textService.addText(this.addTextForm.value).subscribe(resp =>{
       this.router.navigate(['']);
+      return;
     }, error => {
       this.dialog.open(NotificationDialogComponent, {
         data: this.errorService.errorMessageSubject.value,

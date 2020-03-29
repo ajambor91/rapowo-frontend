@@ -9,41 +9,48 @@ import { of} from 'rxjs';
 import {Router} from '@angular/router';
 import {NotificationDialogComponent} from '../notification-dialog/notification-dialog.component';
 import {ErrorService} from '../../../services/error-service';
+import {User} from '../../../model/user/user.model';
+import {AskDeleteComponent} from '../ask-delete/ask-delete.component';
 
 @Component({
   selector: 'app-other-settings',
   templateUrl: './other-settings.component.html',
   styleUrls: ['./other-settings.component.css']
 })
-export class OtherSettingsComponent implements OnInit {
+export class OtherSettingsComponent {
   passVerify: MatDialogRef<PasswordVerifyDialogComponent>;
+  askPassword: MatDialogRef<AskDeleteComponent>;
   submitted = false;
-  constructor(private errorService: ErrorService, private router: Router, private authService: AuthService, private userService: UserService, private matDialog: MatDialog, private formBuilder: FormBuilder) { }
+  password: string;
+  constructor( private errorService: ErrorService, private router: Router, private authService: AuthService, private userService: UserService, private matDialog: MatDialog, private formBuilder: FormBuilder) { }
   otherSettingsForm = this.formBuilder.group({
     deleteUser: ['']
   });
-  openDialog(){
+  user: User = this.authService.currentUserValue;
+
+  openDialog() {
     this.passVerify =  this.matDialog.open(PasswordVerifyDialogComponent, {
       panelClass: 'custom-modal'
       }
     );
   }
-  submit(){
-    console.log(this.otherSettingsForm);
-    if(this.otherSettingsForm.invalid || this.submitted){
+  submit() {
+    if (this.otherSettingsForm.invalid || this.submitted) {
       return;
     }
     this.submitted = true;
-    if(this.otherSettingsForm.get('deleteUser').value){
+    if (this.otherSettingsForm.get('deleteUser').value && (this.user.sociaId === null || this.user.sociaId === '')) {
       this.openDialog();
       this.passVerify.afterClosed().pipe( switchMap( resp => {
-        if(!resp){
+        this.password = resp;
+        if (!resp) {
           return of();
         }
-        return this.userService.deleteUser({id: this.authService.currentUserValue.id, password: resp});
+        this.deleteAccount();
+        return;
       })).subscribe( resp => {
-        this.authService.logout();
-        this.router.navigate(['delete-user']);
+        this.logout();
+
       },
         err => {
           this.matDialog.open(NotificationDialogComponent, {
@@ -53,10 +60,29 @@ export class OtherSettingsComponent implements OnInit {
           });
         });
       this.submitted = false;
+    } else if (this.otherSettingsForm.get('deleteUser').value && this.user.sociaId !== ''){
+      this.askPassword = this.matDialog.open(AskDeleteComponent, {
+        panelClass: 'custom-modal'
+      });
+      this.askPassword.afterClosed().subscribe(resp => {
+        if(resp.delete){
+          this.password = null;
+          this.deleteAccount();
+        }
+        this.submitted = false;
+        return;
+      });
     }
   }
-
-  ngOnInit() {
+  deleteAccount(): void {
+    this.userService.deleteUser({id: this.authService.currentUserValue.id, password: this.password}).subscribe(resp => {
+      this.logout();
+      return;
+    });
+  }
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['delete-user']);
   }
 
 }

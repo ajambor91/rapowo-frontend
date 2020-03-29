@@ -1,7 +1,7 @@
 <div class="container mt__100">
     <div class="row" *ngIf="!userExist; else userContainer">
       <h2 class="text-center h2 mb-5">{{"Nie znaleziono użytkownika" | translate}}</h2>
-      <p class="mt__100 text-center">{{"Za" | translate}} {{seconds}} {{"zostaniesz przeniesiony na" |translate}} <a
+      <p class="mt__50 text-center">{{"Za" | translate}} {{seconds}} {{"zostaniesz przeniesiony na" |translate}} <a
         routerLink="/">{{"stronę główną" | translate}}</a></p>
     </div>
   <ng-template #userContainer>

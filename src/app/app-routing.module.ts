@@ -17,6 +17,7 @@ import {MailingSettingsComponent} from './components/global/mailing-settings/mai
 import {UserAccountComponent} from './components/user-account/user-account.component';
 import {UserProfileResolverService} from './services/resolvers/user-profile-resolver.service';
 import {UserSettingsResolverService} from './services/resolvers/user-settings-resolver.service';
+import {DataExistComponent} from './components/data-exist/data-exist.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent},
@@ -36,7 +37,8 @@ const routes: Routes = [
       { path: 'other-settings/:id', component: OtherSettingsComponent}
     ]},
   { path: 'delete-user', component: DeleteUserInfoComponent},
-  { path: 'profile/:id', component: UserAccountComponent, resolve: {user: UserProfileResolverService}}
+  { path: 'profile/:id', component: UserAccountComponent, resolve: {user: UserProfileResolverService}},
+  { path: 'add-email', component: DataExistComponent}
 
 
 ];

@@ -12,6 +12,7 @@ import {RegisterParams} from '../../model/user/register-params';
 import {RegisterParamsClass} from '../../model/user/register-params-class';
 import {GetSocialNickComponent} from '../global/get-social-nick/get-social-nick.component';
 import {User} from '../../model/user/user.model';
+import {RulesComponent} from '../global/rules/rules.component';
 
 @Component({
   selector: 'app-login',
@@ -30,8 +31,11 @@ export class LoginComponent {
     private socialService: SocialService,
     private userService: UserService,
   ) {}
+  submittedFb = false;
+  submittedGoogle = false;
   loginChecker;
   socialNickModal: MatDialogRef<GetSocialNickComponent>;
+  rulesModal: MatDialogRef<RulesComponent>;
   registerParams: RegisterParams = new RegisterParamsClass();
   submitted = false;
   submit = false;
@@ -40,6 +44,7 @@ export class LoginComponent {
     password: ['', [Validators.required]]
   });
   user: User;
+  agreements: boolean;
   login(): void {
     this.submit = true;
     if(this.loginForm.invalid || this.submitted) {
@@ -52,6 +57,7 @@ export class LoginComponent {
       if(response){
         this.submitted = false;
         this.router.navigate(['/']);
+        return;
       }
     },
       error => {
@@ -70,55 +76,75 @@ export class LoginComponent {
     return this.loginForm.get('password');
   }
   fbLogin(): void {
-
-    console.log('testfb');
+    if(this.submittedFb === true){
+      return;
+    }
+    this.submittedFb = true;
     this.socialService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.socialLogin();
   }
   gmailLogin(): void {
-    console.log('test');
+    if(this.submittedGoogle === true){
+      return;
+    }
+    this.submittedGoogle = true;
     this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.socialLogin();
   }
 
   socialLogin(): void {
+
     this.socialService.authState.subscribe(resp => {
+      this.socialService.signOut();
+
       if(this.loginChecker === resp || typeof resp === null || resp === null){
         return;
       }
       this.loginChecker = resp;
       this.socialData = resp;
       this.api.loginSocialUser(this.registerParams).subscribe(user => {
-
-        if(user.nick === null || user.nick === ''){
-          this.getNick();
-          this.socialNickModal.afterClosed().subscribe(nick => {
-            this.api.currentUserValue.nick = nick;
-            const data: AddNick = {
-              nick
-            };
-            this.userService.addNick(user.id, data).subscribe(resp => {
-              this.user = user;
-              this.user.nick = nick;
-              this.api.getUser();
-            }, error => {
-              this.matDialog.open(NotificationDialogComponent, {
-                width: '250px',
-                data: this.errorService.errorMessageValue.value,
-                panelClass: 'custom-modal'
-              });
+        this.user = user;
+        if(!user.nick){
+           const ruleModal = this.matDialog.open(RulesComponent, {
+            width: '80%',
+            panelClass: 'rules-dialog'
+          });
+           ruleModal.afterClosed().subscribe(resp => {
+            if(resp.rule){
+              if(resp.text){
+                const sessionItem = JSON.parse(sessionStorage.getItem('tempUser'));
+                if(sessionItem){
+                  sessionItem.agreements = true;
+                  this.agreements = true;
+                  sessionStorage.setItem('tempUser', JSON.stringify(sessionItem));
+                }
+              }
+              this.registryUser();
+              return;
+            }
+          }, error => {
+            this.matDialog.open(NotificationDialogComponent, {
+              width: '450px',
+              data: {
+                title: 'Błąd',
+                desc: 'Musisz zaakaceptować regulamin, żeby się zarejestrować!'
+              },
+              panelClass: 'custom-modal'
             });
           });
+          return;
         }
+
+        this.router.navigate(['/']);
+        return;
       }, error => {
         this.matDialog.open(NotificationDialogComponent, {
           width: '250px',
           data: this.errorService.errorMessageValue.value,
           panelClass: 'custom-modal'
-        })
+        });
       });
     });
-
 
   }
   getNick(){
@@ -126,6 +152,33 @@ export class LoginComponent {
       width: '250px',
       panelClass: 'custom-modal'
     });
+  }
+  registryUser(): void {
+      if(this.user.email === null || this.user.email === ''){
+        console.log('ddd');
+        this.router.navigate(['/add-email']);
+        return;
+      }
+      this.getNick();
+      this.socialNickModal.afterClosed().subscribe(nick => {
+        this.api.currentUserValue.nick = nick;
+        const data: AddNick = {
+          nick: nick,
+          agreements: this.agreements
+        };
+        this.userService.addNick(this.user.id, data).subscribe(resp => {
+          this.user.nick = nick;
+          this.api.getUser();
+          this.router.navigate(['/']);
+          return;
+        }, error => {
+          this.matDialog.open(NotificationDialogComponent, {
+            width: '250px',
+            data: this.errorService.errorMessageValue.value,
+            panelClass: 'custom-modal'
+          });
+        });
+      });
   }
   set socialData(resp: SocialUser) {
     if(!resp){
