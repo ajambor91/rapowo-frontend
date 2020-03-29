@@ -52,16 +52,14 @@ export class AuthService {
   loginSocialUser(user: RegisterParams) {
     return  this.http.post<LoginResponse>(`${API_CONFIG.api}/social/login`, user)
       .pipe(map( user => {
-        if (user.data.email) {
-          localStorage.setItem('user', JSON.stringify(user.data));
-          this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
-          this.emitter.emit(user.data);
-        }
-        else {
-          sessionStorage.setItem('tempUser', JSON.stringify(user.data));
-        }
+        sessionStorage.setItem('tempUser', JSON.stringify(user.data));
         return user.data;
       }));
+  }
+  finalLoginSocialUser(user: User){
+    localStorage.setItem('user', JSON.stringify(user));
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+    this.emitter.emit(user);
   }
   logout(){
 

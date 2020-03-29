@@ -122,6 +122,12 @@ export class LoginComponent {
               this.registryUser();
               return;
             }
+             this.submit = false;
+            this.submitted = false;
+            this.submittedFb = false;
+            this.submittedGoogle = false;
+            console.log(this.submit)
+            return;
           }, error => {
             this.matDialog.open(NotificationDialogComponent, {
               width: '450px',
@@ -134,7 +140,7 @@ export class LoginComponent {
           });
           return;
         }
-
+        this.api.finalLoginSocialUser(this.user);
         this.router.navigate(['/']);
         return;
       }, error => {
@@ -145,7 +151,7 @@ export class LoginComponent {
         });
       });
     });
-
+    return;
   }
   getNick(){
     this.socialNickModal = this.matDialog.open(GetSocialNickComponent, {
@@ -161,13 +167,14 @@ export class LoginComponent {
       }
       this.getNick();
       this.socialNickModal.afterClosed().subscribe(nick => {
-        this.api.currentUserValue.nick = nick;
         const data: AddNick = {
           nick: nick,
-          agreements: this.agreements
+          agreements: this.agreements,
+          email: this.user.email
         };
         this.userService.addNick(this.user.id, data).subscribe(resp => {
           this.user.nick = nick;
+          this.api.finalLoginSocialUser(this.user);
           this.api.getUser();
           this.router.navigate(['/']);
           return;

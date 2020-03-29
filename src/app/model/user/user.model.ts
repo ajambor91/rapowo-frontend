@@ -16,6 +16,6 @@ export interface User {
   background?: Background;
   additional: UserAdditionalData;
   preparedBackground?: object;
-  sociaId?: string;
+  socialId?: string;
   agreements?: boolean;
 }

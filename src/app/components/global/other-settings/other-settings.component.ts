@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {PasswordVerifyDialogComponent} from '../password-verify-dialog/password-verify-dialog.component';
@@ -17,7 +17,7 @@ import {AskDeleteComponent} from '../ask-delete/ask-delete.component';
   templateUrl: './other-settings.component.html',
   styleUrls: ['./other-settings.component.css']
 })
-export class OtherSettingsComponent {
+export class OtherSettingsComponent implements OnDestroy{
   passVerify: MatDialogRef<PasswordVerifyDialogComponent>;
   askPassword: MatDialogRef<AskDeleteComponent>;
   submitted = false;
@@ -39,7 +39,7 @@ export class OtherSettingsComponent {
       return;
     }
     this.submitted = true;
-    if (this.otherSettingsForm.get('deleteUser').value && (this.user.sociaId === null || this.user.sociaId === '')) {
+    if (this.otherSettingsForm.get('deleteUser').value && typeof this.user.socialId === 'undefined') {
       this.openDialog();
       this.passVerify.afterClosed().pipe( switchMap( resp => {
         this.password = resp;
@@ -60,7 +60,7 @@ export class OtherSettingsComponent {
           });
         });
       this.submitted = false;
-    } else if (this.otherSettingsForm.get('deleteUser').value && this.user.sociaId !== ''){
+    } else if (this.otherSettingsForm.get('deleteUser').value && this.user.socialId){
       this.askPassword = this.matDialog.open(AskDeleteComponent, {
         panelClass: 'custom-modal'
       });
@@ -84,5 +84,7 @@ export class OtherSettingsComponent {
     this.authService.logout();
     this.router.navigate(['delete-user']);
   }
-
+  ngOnDestroy(): void {
+    clearInterval();
+  }
 }
