@@ -1,0 +1,24 @@
+<div class="container mt__100">
+  <h2 class="mb-5 h2 text-center">{{"Kopie robocze" | translate}}</h2>
+  <div class="row">
+    <div class="col-lg-2 col-sm-12 my-3 list">
+      <ol>
+        <li class="song-title" (click)="selectDraft(draft, i)" *ngFor="let draft of drafts; let i = index">{{draft.title ? draft.title : draft.slug}}</li>
+      </ol>    </div>
+    <div class="offset-lg-1 col-lg-6 col-sm-12">
+      <form [formGroup]="form">
+        <div class="form-group">
+          <input formControlName="title" class="form-control"  type="text">
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" [ngModelOptions]="{standalone: true}"  [(ngModel)]="content">{{selectedSong.content}}</textarea>
+        </div>
+        <div class="form-group d-flex justify-content-between">
+          <button (click)="addText()" type="button" class=" rapowo__btn btn"><span class="button-content" *ngIf="!submitted; else spinner">{{ "Opublikuj!" | translate }}</span><ng-template #spinner><img class="button-content button-loader" src="assets/loaders/button_loader.svg"></ng-template></button>
+          <button (click)="saveDraft()" role="button" class="rapowo__btn btn"><span class="button-content" *ngIf="!submitted; else spinner">{{ "Zapisz!" | translate }}</span><ng-template #spinner><img class="button-content button-loader" src="assets/loaders/button_loader.svg"></ng-template></button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

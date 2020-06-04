@@ -1,0 +1,56 @@
+<div class="container mt__100">
+  <app-main-loader *ngIf="loader"></app-main-loader>
+  <h2 class="h1 text-center mb-5">{{'Powiadomienia' | translate}}</h2>
+  <div class="col-sm-12 offset-md-2 col-md-8" *ngFor="let not of notifications">
+    <a class="my-1" [routerLink]="['/song',not.data.slug]" [queryParams]="not.status === 'reply-comment'? {comment: not.data.parent_comment_id} : not.status === 'new-comment' ? {comment: not.data.id} : '' " [fragment]="not.status == 'reply-comment' ? String(not.data.parent_comment_id) : not.status === 'new-comment' ? String(not.data.id) : ''"  [ngSwitch]="not.status" >
+      <div class="row notify my-1 py-1" *ngSwitchCase="'new-text'">
+
+        <p class="p-1 d-flex">
+          <img class="av-icon-img  mr-1 vertical-align-middle" [src]="helpers.prepareAvatar(not.data.path)">
+          <span>{{"Ostatnio dodane" | translate}} {{not.data.title}} {{"przez" | translate}} {{not.data.author_nick}}</span>
+        </p>
+      </div>
+      <div class="row notify my-2 py-1" *ngSwitchCase="'popular-text'">
+
+        <p class="p-1 d-flex">
+          <img class="av-icon-img col-2 mr-1" [src]="helpers.prepareAvatar(not.data.path)">
+          <span>{{"Nowy popularny tekst" | translate }} {{not.data.title}} {{"użytkownika" | translate}} {{not.data.author_nick}}</span>
+        </p>
+      </div>
+      <div class="row notify my-2 py-1" *ngSwitchCase="'most-comment'">
+
+        <p class="p-1 d-flex">
+          <img class="av-icon-img mr-1 vertical-align-middle" [src]="helpers.prepareAvatar(not.data.path)">
+          <span>{{"Najczęściej komentowany tekst"}} {{not.data.title}} {{"użytkownika" | translate}} {{not.data.author_nick}}</span>
+        </p>
+      </div>
+      <div class="row notify my-2 py-1" *ngSwitchCase="'new-folllowed-text'">
+        <p class="p-1 d-flex">
+          <img class="av-icon-img mr-1 vertical-align-middle" [src]="helpers.prepareAvatar(not.data.path)">
+          <span>{{not.data.author_nick}} {{"którego obserwujesz, dodał tekst" | translate}} {{not.data.title}}</span>
+        </p>
+      </div>
+      <div class="row notify my-2 py-1" *ngSwitchCase="'popular-followed'">
+
+        <p class="p-1 d-flex">
+          <img class="av-icon-img mr-1 vertical-align-middle" [src]="helpers.prepareAvatar(not.data.path)">
+          <span>{{"Nowy popularny tekst użytkownika" | translate}} {{not.data.author_nick}} {{not.data.title}}</span>
+        </p>
+      </div>
+      <div class="row notify my-2 py-1" *ngSwitchCase="'new-comment'">
+
+        <p class="p-1 d-flex">
+          <img class="av-icon-img mr-1 vertical-align-middle" [src]="helpers.prepareAvatar(not.data.path)">
+          <span>{{"Nowy komentarz do Twojego tekstu" | translate}} {{not.data.title}}</span>
+        </p>
+      </div>
+      <div class="row notify my-2 py-1" *ngSwitchCase="'reply-comment'">
+
+        <p class="p-1 d-flex">
+          <img class="av-icon-img mr-1 vertical-align-middle" [src]="helpers.prepareAvatar(not.data.path)">
+          <span>{{not.data.author_nick}} {{"odpowiedział na Twój komentarz do" | translate}} {{not.data.title}}</span>
+        </p>
+      </div>
+    </a>
+  </div>
+</div>

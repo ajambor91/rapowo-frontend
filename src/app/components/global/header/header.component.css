@@ -1,0 +1,71 @@
+.raper_left, .raper_right, .banner{
+    height: 127px;
+    background-repeat: no-repeat;
+
+}
+.raper_left{
+
+    background-image: url('../../../../assets/header/raper_left.png');
+    background-size: cover;
+}
+.banner{
+    background-position: center;
+  background-size: contain;
+  background-image: url('../../../../assets/header/napis.png');
+}
+.raper_right{
+  background-size: cover;
+  background-image: url('../../../../assets/header/raper_right.png');
+}
+header{
+  cursor: pointer;
+}
+header:focus{
+  outline: 0;
+}
+@media screen and (max-width: 768px) and (max-width: 1200px){
+  .computer{
+    display: none;
+  }
+  .mobile{
+    display: block;
+  }
+  .mobile-banner{
+    background-image: url('../../../../assets/header/napis _mobile.png');
+    height: 60px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+@media screen and (min-width: 760px) and (max-width: 1200px){
+  .raper_left, .raper_right, .banner {
+    height: 80px;
+  }
+  .raper_left, .raper_right{
+    background-size: contain;
+  }
+  .computer{
+    display: block;
+  }
+  .mobile{
+    display: none;
+  }
+  .mobile-banner{
+    background-image: url('../../../../assets/header/napis _mobile.png');
+
+  }
+}
+@media screen and (min-width: 1200px ){
+
+  .raper_left, .raper_right, .banner{
+    height: 127px;
+    background-repeat: no-repeat;
+
+  }
+
+  .mobile-banner{
+    display: none;
+  }
+}

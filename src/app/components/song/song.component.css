@@ -1,0 +1,63 @@
+pre.edit-text, h3.edit-input{
+  background-color: #181e1f;
+  box-shadow: #fff 0 0 1px 2px;
+  border: none;
+  transition: box-shadow .5s;
+  outline: none;
+  border-radius: 15px;
+
+}
+pre.edit-text:focus, h3.edit-input:focus{
+  box-shadow: #c7141a 0 0 1px 2px;
+  transition: box-shadow .5s;
+  border: none;
+}
+pre.edit-text{
+  word-break: break-word;
+  display: block;
+
+}
+@media screen and (max-width: 760px) {
+  .desc-desk{
+    display: none;
+  }
+  .desc-mobile{
+    display: block;
+  }
+  .avatar{
+    height: 75px;
+    width: 75px;
+  }
+  .profile{
+    background-size: contain;
+    height: 160px;
+  }
+  h2{
+    font-size: 2em;
+  }
+  .user-content-data{
+    font-size: smaller;
+  }
+
+}
+@media screen and (min-width: 768px){
+  .desc-mobile{
+    display: none;
+  }
+  .desc-desk{
+    display: block;
+  }
+}
+.mt__70{
+  margin-top: 70px;
+}
+@media screen and (min-width: 760px) and (max-width: 1200px){
+  h2{
+    font-size: 2em;
+  }
+  .avatar{
+    height: 150px;
+    width: 150px;
+  }
+
+}

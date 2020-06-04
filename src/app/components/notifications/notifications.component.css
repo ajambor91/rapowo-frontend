@@ -1,0 +1,23 @@
+.vertical-align-middle{
+  vertical-align: middle;
+}
+.av-icon-img{
+  border-radius: 50% !important;
+  width: 35px;
+  height: 35px;
+}
+span{
+  white-space: normal;
+  word-wrap: break-word;
+}
+p img{
+  display: inline-block;
+}
+p{
+  margin-bottom: 0;
+}
+.notify{
+  border-radius: 20px;
+  border: #fff solid 1px;
+  background-color: #181e1f;
+}

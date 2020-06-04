@@ -1,0 +1,11 @@
+textarea{
+  height: 100px;
+  width: 100%;
+}
+.comment-buutton{
+  width: 150px;
+  height: auto;
+  text-align: center;
+  padding:  5px 0 5px 0;
+  font-size: 0.75em;
+}

@@ -1,0 +1,50 @@
+<div class="container mt__100">
+  <app-main-loader *ngIf="loader"></app-main-loader>
+  <h2 class="h1 text-center mb-5">Teksty</h2>
+
+  <div class="offset-lg-1 col-lg-10 col-sm-12  mb-5 song-border translucent" *ngFor="let text of songs; let i = index">
+    <div class="col-12 song-header w-100 position-relative profile" [ngStyle]="text.user.preparedBackground">
+      <h2 class="h2 data-item profile-header"><a class="rapowo__white-link" (click)="helpers.showUser(text.user)" [routerLink]="['/profile',text.user.id]">{{text.user.nick}}</a></h2>
+        <a class="rapowo__white-link" (click)="helpers.showUser(text.user)" [routerLink]="['/profile',text.user.id]">
+        <div class="author-container">
+          <img class="rounded-circle avatar thumbnail" [src]="text.user.preparedAvatar">
+        </div>
+        </a>
+      <div class="buttons">
+          <button (click)="follow(text.user.id, text.user.followed, i)" *ngIf="currentUserId !== text.user.id"  class="rapowo__btn small-button"><span class="button-content" *ngIf="!text.clicked; else spinner">{{text.user.followed ? "Nie obserwuj" : "Obserwuj" | translate}}</span><ng-template #spinner><img class="button-content button-loader" src="assets/loaders/button_loader.svg"></ng-template></button>
+        </div>
+      </div>
+      <a class="song-link" (click)="helpers.showSong(text)"  [routerLink]="['/song', text.slug]">
+
+      <div class="col-12 position-relative  p-5">
+      <h3 class="h2 text-center">{{text.title}}</h3>
+        <hr>
+      <pre class="text__song">{{text.content}}</pre>
+      </div>
+      </a>
+    <div class="col-12 additional-song-container py-3 px-5">
+      <hr>
+      <div class="d-flex justify-content-center position-relative col-12">
+
+        <div class="vote nok mx-3">
+          <button (click)="helpers.like(text, types.dislike)" class="vote-button">
+            <img src="assets/icons/thumb_down.svg">
+          </button>
+        </div>
+        <div class="note mx-3">
+          <span>{{text.note}}</span>
+        </div>
+        <div class="vote ok mx-3">
+          <button (click)="helpers.like(text, types.like)" class="vote-button">
+            <img src="assets/icons/thumb_up.svg">
+          </button>
+        </div>
+        <app-tools [index]="i" (emitter)="removeSong($event)" *ngIf="text.user.id === currentUserId"  [text]="text"></app-tools>
+
+      </div>
+
+
+    </div>
+  </div>
+  <app-main-loader *ngIf="addLoader"></app-main-loader>
+</div>

@@ -1,0 +1,46 @@
+@media screen and (max-width: 760px) {
+  .desc-desk{
+    display: none;
+  }
+  .desc-mobile{
+    display: block;
+  }
+  .avatar{
+    height: 75px;
+    width: 75px;
+  }
+  .profile{
+    background-size: contain;
+    height: 160px;
+  }
+  h2{
+    font-size: 2em;
+  }
+  .user-content-data{
+    font-size: smaller;
+  }
+  pre{
+    font-size: 1.3em;
+  }
+  .add-data{
+    font-size: smaller;
+  }
+}
+@media screen and (min-width: 760px){
+  .desc-mobile{
+    display: none;
+  }
+  .desc-desk{
+    display: block;
+  }
+}
+@media screen and (min-width: 760px) and (max-width: 1200px){
+  h2{
+    font-size: 2em;
+  }
+  .avatar{
+    height: 150px;
+    width: 150px;
+  }
+}
+

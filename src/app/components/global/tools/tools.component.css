@@ -1,0 +1,8 @@
+@media screen and (max-width: 768px){
+  .tools{
+    justify-content: center;
+    top: 40px;
+    right: 0;
+    left: 0;
+  }
+}

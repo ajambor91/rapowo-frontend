@@ -1,0 +1,10 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-header id="home"></app-header>
+<app-navbar [user]="user"></app-navbar>
+<div class="position-relative min-h-100p">
+  <app-main-loader *ngIf="loader; else router"></app-main-loader>
+  <ng-template #router>
+    <router-outlet></router-outlet>
+  </ng-template>
+</div>
+<app-arrow-up></app-arrow-up>

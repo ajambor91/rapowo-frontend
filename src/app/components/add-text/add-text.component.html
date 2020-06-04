@@ -1,0 +1,23 @@
+<div class="container">
+  <h2 class="text-center h2  mt__100 mb-5">{{'Dodaj tekst' | translate}}</h2>
+  <div class="row">
+    <div class="col-12" class="col-sm-12 col-md-6 offset-md-3">
+      <form [formGroup]="addTextForm" (ngSubmit)="addText()" class="form">
+        <div class="form-group">
+          <input name="title" class="form-control" formControlName="title" [placeholder]="'Tytuł' | translate" type="text">
+          <span *ngIf="getTitle.errors && getTitle.errors.required && (getTitle.touched || submit)">{{"Tytuł jest wymagany" | translate}}</span>
+        </div>
+        <div class="form-group">
+          <textarea (ngModelChange)="checkTextArea()"  (focus)="checkTextArea()" [ngModelOptions]="{standalone: true}" [(ngModel)]="content"  name="contentArea" class="form-control" type="text" [(ngModel)]="content" [placeholder]="'Tekst' | translate" rows="8" ></textarea>
+          <input type="hidden" formControlName="content" name="content">
+          <span *ngIf="getContent.errors && getContent.errors.required && (getContent.touched || changed)">{{"Tekst jest wymagany" | translate}}</span>
+        </div>
+        <div class="form-group d-flex">
+          <button role="button" class="rapowo__btn btn"><span class="button-content" *ngIf="!submitted; else spinner">{{ "Dodaj tekst!" | translate }}</span><ng-template #spinner><img class="button-content button-loader" src="assets/loaders/button_loader.svg"></ng-template></button>
+          <button (click)="addDraft()" role="button" class="rapowo__btn btn"><span class="button-content" *ngIf="!submitted; else spinner">{{ "Zapisz kopie roboczą!" | translate }}</span><ng-template #spinner><img class="button-content button-loader" src="assets/loaders/button_loader.svg"></ng-template></button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

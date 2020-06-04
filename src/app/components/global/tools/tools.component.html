@@ -1,0 +1,8 @@
+<div class="position-absolute d-flex tools">
+  <div class="tool-buttons">
+    <button (click)="helpers.showSong(text)" [routerLink]="['/song', text.slug, 'edit']"><img src="assets/icons/edit.svg"></button>
+  </div>
+  <div class="tool-buttons">
+    <button (click)="remove(text.id)"><img src="assets/icons/delete.svg"></button>
+  </div>
+</div>

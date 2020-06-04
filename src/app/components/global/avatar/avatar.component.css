@@ -1,0 +1,22 @@
+
+.avatar:hover{
+  box-shadow: #fff 0 0 3px 4px;
+  transition: box-shadow .5s;
+}
+.close{
+  right: 0;
+  top: 0;
+  color: #fff;
+  transition: color .5s;
+  box-shadow: none;
+}
+.close:hover{
+  color: #c7141a;
+  transition: color .5s;
+  box-shadow: none;
+}
+.avatar-info{
+  vertical-align: middle;
+}
+
+

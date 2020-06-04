@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="offset-md-1 col-md-10 col-sm-12">
+    <div class="row col-12 comments-container">
+      <ul class="w-100">
+        <li  *ngFor="let comment of comments, let j = index">
+          <div [id]="comment.id" class=" comment">
+            <div class="children row">
+              <div (mouseleave)="comment.tools = comment.tools !== commentTypes.IN_EDIT ? commentTypes.IN_REST : commentTypes.IN_EDIT" (mouseenter)="comment.tools = comment.tools !== commentTypes.IN_EDIT ? commentTypes.IN_VISIBLE : commentTypes.IN_EDIT"  class="simple-comment d-flex position-relative">
+                <div  *ngIf="comment.user.id === user.id && comment.tools === commentTypes.IN_VISIBLE" class="tool-buttons edit-box d-flex position-absolute">
+                  <button (click)="comment.tools = commentTypes.IN_EDIT"><img src="assets/icons/edit.svg"></button>
+                  <button (click)="delComment(comment, j)"><img src="assets/icons/delete.svg"></button>
+                </div>
+            <div class="small-thumb">
+              <img class="avatar small-thumb" [src]="comment.user.preparedAvatar">
+            </div>
+            <div class="px-3">
+              <div class="row">
+                <h5 class="h5 px-3 pt-2 pb-1">{{comment.user.nick}}</h5>
+              </div>
+              <div class="row px-3 comm">
+                <pre class="col-12" *ngIf="comment.tools !== commentTypes.IN_EDIT;else editComment">{{comment.content}}</pre>
+                <ng-template #editComment><pre class="pre-child col-12 edit-comment" (keyup.escape)="cancelEdit(j)" (keyup.enter)="saveEdit(j, null, comment)" (input)="tempComment=$event.target.textContent"  contenteditable="true"><div [textContent]="comment.content"></div></pre></ng-template>
+
+
+              </div>
+            </div>
+            </div>
+            </div>
+            <div class="children-container">
+            <div class="children col-12">
+              <div class="row mt-2 children-div-container">
+            <ul class="w-100" *ngIf="comment.children && comment.children.length > 0">
+              <li *ngFor="let child of comment.children; let i = index">
+                <div [id]="child.id" *ngIf="comment.visibility"  class="comment row">
+                <div  (mouseleave)="child.tools = child.tools !== commentTypes.IN_EDIT ? commentTypes.IN_REST : commentTypes.IN_EDIT" (mouseenter)="child.tools = child.tools !== commentTypes.IN_EDIT ? commentTypes.IN_VISIBLE : commentTypes.IN_EDIT" class="simple-comment row position-relative">
+                  <div *ngIf="child.user.id === user.id && child.tools === commentTypes.IN_VISIBLE" class="tool-buttons edit-box d-flex position-absolute">
+                    <button (click)="child.tools = commentTypes.IN_EDIT"><img src="assets/icons/edit.svg"></button>
+                    <button (click)="delComment(child, j, i)"><img src="assets/icons/delete.svg"></button>
+                  </div>
+                <div class="small-thumb">
+                  <img class="avatar small-thumb" [src]="child.user.preparedAvatar">
+                </div>
+                <div class="px-3">
+                  <div class="row">
+                    <h5 class="h5 px-3 pt-2 pb-1">{{child.user.nick}}</h5>
+                  </div>
+                  <div  class="row px-3 comm">
+                    <pre *ngIf="child.tools !== commentTypes.IN_EDIT; else editComment" class="pre-child col-12">{{child.content}}</pre>
+                    <ng-template #editComment><pre class="pre-child col-12 edit-comment" (keyup.escape)="cancelEdit(j,i)" (keyup.enter)="saveEdit(j, i, child)" (input)="tempComment=$event.target.textContent"  contenteditable="true"><div [textContent]="child.content"></div></pre></ng-template>
+
+                  </div>
+                </div>
+                </div>
+                </div>
+              </li>
+            </ul>
+              </div>
+              <div *ngIf="comment.visibility " class="row mt-3">
+                <hr>
+                <app-submit-comment buttonText="Odpowiedz" class="col-12 p-0" (commentEmit)="pushComment($event, j)" [comment]="comment" [song]="song"></app-submit-comment>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="show-comments row mb-5">
+            <p class="m-1"><a class="rapowo__red-link" role="link"  (click)="toggleAnswers(comment)" *ngIf="!comment.visibility; else hide" class="show-comments">{{comment.children && comment.children.length > 0 ? "Pokaż odpowiedzi" : "Odpowiedz" | translate}}</a><ng-template #hide><a class="rapowo__red-link" role="link" (click)="toggleAnswers(comment)"  class="show-hide hide-comments">{{"Ukryj odpowiedzi" | translate}}</a></ng-template></p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <app-submit-comment buttonText="Skomentuj" (commentEmit)="pushComment($event)" [song]="song"></app-submit-comment>
+  </div>
+</div>

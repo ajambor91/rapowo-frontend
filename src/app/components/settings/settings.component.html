@@ -1,0 +1,19 @@
+<div class="container">
+  <h2 class="text-center mb-5 mt__100">{{"Ustawienia" | translate}}</h2>
+  <div class="row">
+    <div class="tabs col-12 p-0">
+      <nav mat-tab-nav-bar selectedIndex="0" class="mb-5">
+        <a mat-tab-link [routerLink]="['edit-account', user.id]">{{"Edytuj konto" | translate }}</a>
+        <a mat-tab-link [routerLink]="['notification-settings', user.id]">{{"Ustawienia powiadomień" | translate}}</a>
+        <a mat-tab-link [routerLink]="['other-settings', user.id]">{{"Inne" | translate}}</a>
+      </nav>
+    </div>
+    <div class="min-h-100p col-12 ">
+      <app-setting-loader *ngIf="loader; else router"></app-setting-loader>
+      <ng-template #router>
+        <router-outlet></router-outlet>
+      </ng-template>
+    </div>
+  </div>
+
+</div>

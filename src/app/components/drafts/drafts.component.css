@@ -1,0 +1,12 @@
+textarea{
+  min-height: 300px;
+}
+button, button:focus, button:hover, button:active{
+  width: 150px;
+  height: 35px;
+
+}
+.list{
+  max-height: 300px;
+  overflow-y: auto;
+}
